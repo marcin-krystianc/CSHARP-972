@@ -7,5 +7,6 @@
 
     <ItemGroup>
         <PackageReference Include="CassandraCSharpDriver" Version="3.17.1" />
+        <None Include="sf-class2-root.crt" CopyToOutputDirectory="PreserveNewest" />
     </ItemGroup>
 </Project>

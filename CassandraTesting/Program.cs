@@ -19,7 +19,7 @@ namespace CassandraTesting
             var keyspace = "my_keyspace";
             
             var certCollection = new X509Certificate2Collection();
-            var amazoncert = new X509Certificate2(@"D:\sf-class2-root.crt");
+            var amazoncert = new X509Certificate2(@"sf-class2-root.crt");
             certCollection.Add(amazoncert);
             
             var cluster = Cluster.Builder()

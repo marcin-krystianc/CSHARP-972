@@ -9,13 +9,12 @@
 		    <artifactId>java-driver-core</artifactId>
             <version>4.14.1</version>
         </dependency>
-
     </dependencies>
 	
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>CassandraTesting2</artifactId>
+    <artifactId>CassandraTesting</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>

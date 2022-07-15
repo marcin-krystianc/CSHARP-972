@@ -10,8 +10,6 @@ namespace CassandraTesting
 {
     public static class Program
     {
-        private static bool isRunning = true;
-        
         static async Task Main(string[] args)
         {
             var app = new CommandApp();
@@ -29,7 +27,7 @@ namespace CassandraTesting
             var ss = new SimpleStatement("TRUNCATE my_keyspace.my_table");
             ss.SetConsistencyLevel(ConsistencyLevel.LocalQuorum);
             ss.SetIdempotence(false);
-            await session.ExecuteAsync(ss.Bind()).ConfigureAwait(false);
+            await session.ExecuteAsync(ss).ConfigureAwait(false);
         }
 
         static async Task PopulateData(ISession session)

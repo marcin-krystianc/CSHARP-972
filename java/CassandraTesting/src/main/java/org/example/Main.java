@@ -24,7 +24,7 @@ public class Main {
 
             AtomicLong counter = new AtomicLong(0);
             final int NumRows = 100;
-            final int THREADS = Integer.parseInt(System.getProperty("test.threads", "100"));
+            final int THREADS = Integer.parseInt(System.getProperty("test.threads", "1000"));
             final int HELPER_THREADS = Integer.parseInt(System.getProperty("test.helper.threads", "1"));
             final int PERMITS = Integer.parseInt(System.getProperty("test.permits", "128"));
             Executor executor = Executors.newFixedThreadPool(HELPER_THREADS);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
@@ -13,8 +14,8 @@ namespace CassandraTesting;
 
 public sealed class BenchmarkCommand : AsyncCommand<BenchmarkSettings>
 {
-    private static bool isRunning = true;
-    
+    private long _counter = 0;
+
     public override ValidationResult Validate(CommandContext context, BenchmarkSettings settings)
     {
         if (string.IsNullOrWhiteSpace(settings.Login))
@@ -47,44 +48,37 @@ public sealed class BenchmarkCommand : AsyncCommand<BenchmarkSettings>
             
         var session = await cluster.ConnectAsync(settings.Keyspace);
 
-        var ps = session.Prepare("SELECT * FROM my_table where id = ?");
-        ps.SetConsistencyLevel(ConsistencyLevel.One);
-        ps.SetIdempotence(false);
+        var cts = new CancellationTokenSource();
 
-        const int TASK_COUNT = 128;
-        Task<long>[] tasks = new Task<long>[TASK_COUNT];
-        for (var i = 0; i < TASK_COUNT; i++)
-        {
-            tasks[i] = worker(session, ps);
-        }
-        Stopwatch stopWatch = Stopwatch.StartNew();
-        Thread.Sleep(60000);
-        isRunning = false;
-        Task.WaitAll(tasks);
-        stopWatch.Stop();
-        long count = 0;
-        for (var i = 0; i < TASK_COUNT; i++)
-        {
-            count += tasks[i].Result;
-        }
-        double rate = count / (stopWatch.ElapsedMilliseconds / 1000.0);
-        Console.WriteLine("Rate: {0} rows/second", rate);
+        var tasks = Enumerable.Range(0, settings.TaskCount)
+            .Select(x => WorkerFactory(session, settings, cts.Token))
+            .ToList();
         
-        await Task.Delay(0);
+        var stopWatch = Stopwatch.StartNew();
+        cts.CancelAfter(TimeSpan.FromSeconds(1));
+        
+        while (!cts.IsCancellationRequested)
+        {
+            await Task.Delay(TimeSpan.FromSeconds(5));
+            var rate = Interlocked.Read(ref _counter) / stopWatch.Elapsed.TotalSeconds;
+            Console.WriteLine("Rate: {0} rows/second", rate);
+        }
+
+        await Task.WhenAll(tasks);
         return 0;
     }
 
-    static async Task<long> worker(ISession session, PreparedStatement ps)
+    async Task WorkerFactory(ISession session, BenchmarkSettings settings, CancellationToken ct)
     {
-        long subtotal = 0;
-        while (isRunning) {
-            var rs = await session.ExecuteAsync(ps.Bind(1)).ConfigureAwait(false);
-            foreach (var row in rs)
-            {
-                subtotal++;
-            }
+        var ps = session.Prepare("SELECT * FROM my_table where id <= ? ALLOW FILTERING");
+        ps.SetConsistencyLevel(ConsistencyLevel.One);
+        ps.SetIdempotence(false);
+        
+        while (!ct.IsCancellationRequested) 
+        {
+            var rs = await session.ExecuteAsync(ps.Bind(settings.NumberOfRows));
+            var count = rs.Count();
+            Interlocked.Add(ref _counter, count);
         }
-
-        return subtotal;
     }
 }

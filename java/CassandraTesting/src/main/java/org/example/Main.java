@@ -23,9 +23,9 @@ public class Main {
             PreparedStatement ps = session.prepare(SimpleStatement.newInstance("SELECT * FROM my_table WHERE id <= ? ALLOW FILTERING"));
 
             AtomicLong counter = new AtomicLong(0);
-            final int NumFiled = 100;
+            final int NumRows = 100;
             final int THREADS = Integer.parseInt(System.getProperty("test.threads", "100"));
-            final int HELPER_THREADS = Integer.parseInt(System.getProperty("test.helper.threads", "100"));
+            final int HELPER_THREADS = Integer.parseInt(System.getProperty("test.helper.threads", "1"));
             final int PERMITS = Integer.parseInt(System.getProperty("test.permits", "128"));
             Executor executor = Executors.newFixedThreadPool(HELPER_THREADS);
             Semaphore semaphore = new Semaphore(PERMITS);
@@ -35,7 +35,7 @@ public class Main {
                 Thread producer = new Thread(() -> {
                     while (isRunning) {
                         semaphore.acquireUninterruptibly();
-                        session.executeAsync(ps.bind(NumFiled))
+                        session.executeAsync(ps.bind(NumRows))
                                 .thenComposeAsync(rs -> countRows(rs, 0, executor), executor)
                                 .whenCompleteAsync((count, error) -> {
                                     if (error != null) {

@@ -59,7 +59,7 @@ public sealed class BenchmarkSyncCommand : Command<BenchmarkSettings>
         var threads = new Thread[settings.TaskCount];
         for (var i = 0; i < settings.TaskCount; i++)
         {
-            threads[i] = new Thread(async () =>
+            threads[i] = new Thread(() =>
             {
                 while (!cts.Token.IsCancellationRequested)
                 {

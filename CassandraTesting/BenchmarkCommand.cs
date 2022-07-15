@@ -78,6 +78,7 @@ public sealed class BenchmarkCommand : AsyncCommand<BenchmarkSettings>
     {
         while (!ct.IsCancellationRequested)
         {
+            var _ = new byte[100];
             var rs = await session.ExecuteAsync(bs);
             var count = rs.Count();
             Interlocked.Add(ref _counter, count);

@@ -52,7 +52,7 @@ public sealed class BenchmarkCommand : AsyncCommand<BenchmarkSettings>
         var cts = new CancellationTokenSource();
 
         var ps = session.Prepare("SELECT * FROM my_table where id <= ? ALLOW FILTERING");
-        ps.SetConsistencyLevel(ConsistencyLevel.Any);
+        ps.SetConsistencyLevel(ConsistencyLevel.LocalOne);
         ps.SetIdempotence(false);
         var bs = ps.Bind(settings.NumberOfRows);
 

@@ -24,9 +24,9 @@ public class Main {
 
             AtomicLong counter = new AtomicLong(0);
             final int NumRows = 1000;
-            final int THREADS = Integer.parseInt(System.getProperty("test.threads", "256"));
-            final int HELPER_THREADS = Integer.parseInt(System.getProperty("test.helper.threads", "1"));
-            final int PERMITS = Integer.parseInt(System.getProperty("test.permits", "256"));
+            final int THREADS = Integer.parseInt(System.getProperty("test.threads", "400"));
+            final int HELPER_THREADS = Integer.parseInt(System.getProperty("test.helper.threads", "10"));
+            final int PERMITS = Integer.parseInt(System.getProperty("test.permits", "400"));
             Executor executor = Executors.newFixedThreadPool(HELPER_THREADS);
             Semaphore semaphore = new Semaphore(PERMITS);
 

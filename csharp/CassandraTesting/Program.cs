@@ -17,6 +17,7 @@ namespace CassandraTesting
             app.Configure(c =>
             {
                 c.AddCommand<BenchmarkCommand>("benchmark");
+                c.AddCommand<BenchmarkSyncCommand>("benchmark-sync");
             });
 
             await app.RunAsync(args);

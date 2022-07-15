@@ -23,7 +23,7 @@ public class Main {
             PreparedStatement ps = session.prepare(SimpleStatement.newInstance("SELECT * FROM my_table WHERE id <= ? ALLOW FILTERING"));
 
             AtomicLong counter = new AtomicLong(0);
-            final int NumRows = 1000;
+            final int NumRows = 1;
             final int THREADS = Integer.parseInt(System.getProperty("test.threads", "400"));
             final int HELPER_THREADS = Integer.parseInt(System.getProperty("test.helper.threads", "10"));
             final int PERMITS = Integer.parseInt(System.getProperty("test.permits", "400"));

@@ -55,7 +55,7 @@ public sealed class BenchmarkCommand : AsyncCommand<BenchmarkSettings>
             .ToList();
         
         var stopWatch = Stopwatch.StartNew();
-        cts.CancelAfter(TimeSpan.FromSeconds(1));
+        cts.CancelAfter(TimeSpan.FromSeconds(settings.Duration));
         
         while (!cts.IsCancellationRequested)
         {

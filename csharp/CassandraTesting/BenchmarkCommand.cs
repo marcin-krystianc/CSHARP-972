@@ -70,7 +70,7 @@ public sealed class BenchmarkCommand : AsyncCommand<BenchmarkSettings>
             }
             catch (Exception e)
             {
-                Console.WriteLine($"Exception: {e}");
+                Console.WriteLine($"Exception: {e.Message}");
             }
         }
     }

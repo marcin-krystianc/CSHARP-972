@@ -54,7 +54,7 @@ public sealed class BenchmarkSyncCommand : Command<BenchmarkSettings>
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine($"Exception: {e}");
+                        Console.WriteLine($"Exception: {e.Message}");
                     }
                 }
             });

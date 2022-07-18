@@ -31,10 +31,5 @@ namespace CassandraTesting
             ss.SetIdempotence(false);
             await session.ExecuteAsync(ss).ConfigureAwait(false);
         }
-
-        static async Task PopulateData(ISession session)
-        {
-     
-        }
     }
 }

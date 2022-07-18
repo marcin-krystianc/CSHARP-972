@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Threading.Tasks;
 using Cassandra;
@@ -34,25 +31,10 @@ public sealed class BenchmarkCommand : AsyncCommand<BenchmarkSettings>
 
     public override async Task<int> ExecuteAsync(CommandContext context, BenchmarkSettings settings)
     {
-        var certCollection = new X509Certificate2Collection();
-        var crtFileName = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
-            "sf-class2-root.crt");
-        var amazoncert = new X509Certificate2(crtFileName);
-        certCollection.Add(amazoncert);
-
-        var cluster = Cluster.Builder()
-            .AddContactPoint(settings.Hostname)
-            .WithPort(settings.Port)
-            .WithSSL(new SSLOptions().SetCertificateCollection(certCollection))
-            .WithCredentials(settings.Login, settings.Password)
-            .WithSocketOptions(new SocketOptions().SetTcpNoDelay(true).SetReadTimeoutMillis(0))
-            .Build();
-
-        var session = await cluster.ConnectAsync(settings.Keyspace);
-
+        var session = await CassandraUtils.ConnectAsync(settings);
         var cts = new CancellationTokenSource();
 
-        var ps = session.Prepare("SELECT * FROM my_table where id <= ? ALLOW FILTERING");
+        var ps = session.Prepare("SELECT * FROM my_table where id < ? ALLOW FILTERING");
         ps.SetConsistencyLevel(ConsistencyLevel.LocalOne);
         ps.SetIdempotence(false);
         var bs = ps.Bind(settings.NumberOfRows);
@@ -86,9 +68,9 @@ public sealed class BenchmarkCommand : AsyncCommand<BenchmarkSettings>
                 Interlocked.Add(ref _rowCounter, rs.Count());
                 Interlocked.Increment(ref _requestCounter);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                // ignored
+                Console.WriteLine($"Exception: {e}");
             }
         }
     }

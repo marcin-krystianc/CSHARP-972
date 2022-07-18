@@ -18,6 +18,7 @@ namespace CassandraTesting
             {
                 c.AddCommand<BenchmarkCommand>("benchmark");
                 c.AddCommand<BenchmarkSyncCommand>("benchmark-sync");
+                c.AddCommand<PopulateCommand>("populate");
             });
 
             await app.RunAsync(args);
@@ -33,14 +34,7 @@ namespace CassandraTesting
 
         static async Task PopulateData(ISession session)
         {
-            var ps = session.Prepare("INSERT INTO my_keyspace.my_table (id, row_id, payload) VALUES  (?, ?, ?)");
-            ps.SetConsistencyLevel(ConsistencyLevel.LocalQuorum);
-            ps.SetIdempotence(false);
-            
-            for (var i = 0; i < 1000; i++)
-            {
-                await session.ExecuteAsync(ps.Bind(i, i, $"test_{i}")).ConfigureAwait(false);
-            }
+     
         }
     }
 }

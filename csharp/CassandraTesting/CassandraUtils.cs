@@ -16,15 +16,19 @@ public static class CassandraUtils
         var amazoncert = new X509Certificate2(crtFileName);
         certCollection.Add(amazoncert);
 
-        var cluster = Cluster.Builder()
+        var clusterBuilder = Cluster.Builder()
             .AddContactPoint(settings.Hostname)
             .WithPort(settings.Port)
             .WithSSL(new SSLOptions().SetCertificateCollection(certCollection))
-            .WithCredentials(settings.Login, settings.Password)
-            .WithSocketOptions(new SocketOptions().SetTcpNoDelay(true).SetReadTimeoutMillis(0))
-            .Build();
+            .WithSocketOptions(new SocketOptions().SetTcpNoDelay(true).SetReadTimeoutMillis(0));
 
-       return await cluster.ConnectAsync(settings.Keyspace);
+        if (!string.IsNullOrWhiteSpace(settings.Login))
+        {
+            clusterBuilder = clusterBuilder.WithCredentials(settings.Login, settings.Password);
+        }
+        
+        var cluster = clusterBuilder.Build();
+        return await cluster.ConnectAsync(settings.Keyspace);
     }
     
     public static ISession Connect(CassandraSettings settings)

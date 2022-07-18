@@ -22,4 +22,7 @@ public class CassandraSettings : CommandSettings
     
     [CommandOption("-p|--password")]
     public string Password { get; set; }
+    
+    [CommandOption("--no-ssl")]
+    public bool NoSSL { get; set; }
 }

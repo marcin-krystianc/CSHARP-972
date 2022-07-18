@@ -19,9 +19,13 @@ public static class CassandraUtils
         var clusterBuilder = Cluster.Builder()
             .AddContactPoint(settings.Hostname)
             .WithPort(settings.Port)
-            .WithSSL(new SSLOptions().SetCertificateCollection(certCollection))
             .WithSocketOptions(new SocketOptions().SetTcpNoDelay(true).SetReadTimeoutMillis(0));
 
+        if (!settings.NoSSL)
+        {
+            clusterBuilder = clusterBuilder.WithSSL(new SSLOptions().SetCertificateCollection(certCollection));
+        }
+        
         if (!string.IsNullOrWhiteSpace(settings.Login))
         {
             clusterBuilder = clusterBuilder.WithCredentials(settings.Login, settings.Password);

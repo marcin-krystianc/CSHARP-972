@@ -12,22 +12,7 @@ public sealed class BenchmarkSyncCommand : Command<BenchmarkSettings>
 {
     private long _rowCounter = 0;
     private long _requestCounter = 0;
-
-    public override ValidationResult Validate(CommandContext context, BenchmarkSettings settings)
-    {
-        if (string.IsNullOrWhiteSpace(settings.Login))
-        {
-            return ValidationResult.Error("Login is required");
-        }
-
-        if (string.IsNullOrWhiteSpace(settings.Password))
-        {
-            return ValidationResult.Error("Password is required");
-        }
-
-        return base.Validate(context, settings);
-    }
-
+    
     public override int Execute(CommandContext context, BenchmarkSettings settings)
     {
         var session = CassandraUtils.Connect(settings);

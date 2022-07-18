@@ -14,7 +14,8 @@ namespace CassandraTesting;
 
 public sealed class BenchmarkSyncCommand : Command<BenchmarkSettings>
 {
-    private long _counter = 0;
+    private long _rowCounter = 0;
+    private long _requestCounter = 0;
 
     public override ValidationResult Validate(CommandContext context, BenchmarkSettings settings)
     {
@@ -63,10 +64,17 @@ public sealed class BenchmarkSyncCommand : Command<BenchmarkSettings>
             {
                 while (!cts.Token.IsCancellationRequested)
                 {
-                    var sw = Stopwatch.StartNew();
-                    var results = session.Execute(bs);
-                    var count = results.Count();
-                    Interlocked.Add(ref _counter, count);
+                    try
+                    {
+                        var results = session.Execute(bs);
+                        var count = results.Count();
+                        Interlocked.Add(ref _rowCounter, count);
+                        Interlocked.Increment(ref _requestCounter);
+                    }
+                    catch (Exception)
+                    {
+                        // ignored
+                    }
                 }
             });
         }
@@ -82,8 +90,9 @@ public sealed class BenchmarkSyncCommand : Command<BenchmarkSettings>
         while (!cts.IsCancellationRequested)
         {
             Thread.Sleep(TimeSpan.FromSeconds(5));
-            var rate = Interlocked.Read(ref _counter) / stopWatch.Elapsed.TotalSeconds;
-            Console.WriteLine("Rate: {0} rows/second", rate);
+            var rowRate = Interlocked.Read(ref _rowCounter) / stopWatch.Elapsed.TotalSeconds;
+            var requestRate = Interlocked.Read(ref _requestCounter) / stopWatch.Elapsed.TotalSeconds;
+            Console.WriteLine("Rate: {0} rows/second, {1} requests/second", rowRate, requestRate);
         }
         
         for (var i = 0; i < settings.TaskCount; i++)

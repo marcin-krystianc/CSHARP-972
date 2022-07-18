@@ -14,7 +14,8 @@ namespace CassandraTesting;
 
 public sealed class BenchmarkCommand : AsyncCommand<BenchmarkSettings>
 {
-    private long _counter = 0;
+    private long _rowCounter = 0;
+    private long _requestCounter = 0;
 
     public override ValidationResult Validate(CommandContext context, BenchmarkSettings settings)
     {
@@ -57,7 +58,7 @@ public sealed class BenchmarkCommand : AsyncCommand<BenchmarkSettings>
         var bs = ps.Bind(settings.NumberOfRows);
 
         var tasks = Enumerable.Range(0, settings.TaskCount)
-            .Select(x => WorkerFactory(session, bs, cts.Token))
+            .Select(x => Worker(session, bs, cts.Token))
             .ToList();
 
         var stopWatch = Stopwatch.StartNew();
@@ -66,21 +67,29 @@ public sealed class BenchmarkCommand : AsyncCommand<BenchmarkSettings>
         while (!cts.IsCancellationRequested)
         {
             await Task.Delay(TimeSpan.FromSeconds(5));
-            var rate = Interlocked.Read(ref _counter) / stopWatch.Elapsed.TotalSeconds;
-            Console.WriteLine("Rate: {0} rows/second", rate);
+            var rowRate = Interlocked.Read(ref _rowCounter) / stopWatch.Elapsed.TotalSeconds;
+            var requestRate = Interlocked.Read(ref _requestCounter) / stopWatch.Elapsed.TotalSeconds;
+            Console.WriteLine("Rate: {0} rows/second, {1} requests/second", rowRate, requestRate);
         }
 
         await Task.WhenAll(tasks);
         return 0;
     }
 
-    async Task WorkerFactory(ISession session, BoundStatement bs, CancellationToken ct)
+    async Task Worker(ISession session, BoundStatement bs, CancellationToken ct)
     {
         while (!ct.IsCancellationRequested)
         {
-            var rs = await session.ExecuteAsync(bs);
-            var count = rs.Count();
-            Interlocked.Add(ref _counter, count);
+            try
+            {
+                var rs = await session.ExecuteAsync(bs);
+                Interlocked.Add(ref _rowCounter, rs.Count());
+                Interlocked.Increment(ref _requestCounter);
+            }
+            catch (Exception)
+            {
+                // ignored
+            }
         }
     }
 }

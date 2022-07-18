@@ -5,7 +5,7 @@ namespace CassandraTesting;
 
 public class CassandraSettings : CommandSettings
 {
-    [CommandOption("--hostnames")]
+    [CommandOption("--hostname")]
     [DefaultValue("cassandra.eu-central-1.amazonaws.com")]
     public string Hostname { get; set; }
     

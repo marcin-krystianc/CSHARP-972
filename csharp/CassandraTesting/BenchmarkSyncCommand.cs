@@ -20,7 +20,7 @@ public sealed class BenchmarkSyncCommand : Command<BenchmarkSettings>
         var session = CassandraUtils.Connect(settings);
         var cts = new CancellationTokenSource();
 
-        var ps = session.Prepare("SELECT * FROM my_table where id < ? ALLOW FILTERING");
+        var ps = session.Prepare("SELECT * FROM my_table");
         ps.SetConsistencyLevel(ConsistencyLevel.LocalQuorum);
         ps.SetIdempotence(false);
         var bs = ps.Bind(settings.NumberOfRows);

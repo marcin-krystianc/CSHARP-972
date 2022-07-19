@@ -20,10 +20,9 @@ public sealed class BenchmarkSyncCommand : Command<BenchmarkSettings>
         var session = CassandraUtils.Connect(settings);
         var cts = new CancellationTokenSource();
 
-        var ps = session.Prepare("SELECT * FROM my_table where id < ? ALLOW FILTERING");
-        ps.SetConsistencyLevel(ConsistencyLevel.LocalQuorum);
-        ps.SetIdempotence(false);
-        var bs = ps.Bind(settings.NumberOfRows);
+        var statement = new SimpleStatement($"SELECT * FROM my_table where id < {settings.NumberOfRows} ALLOW FILTERING");
+        statement.SetConsistencyLevel(ConsistencyLevel.LocalOne);
+        statement.SetReadTimeoutMillis(120000);
 
         var threads = new Thread[settings.TaskCount];
         for (var i = 0; i < settings.TaskCount; i++)
@@ -34,7 +33,7 @@ public sealed class BenchmarkSyncCommand : Command<BenchmarkSettings>
                 {
                     try
                     {
-                        var results = session.Execute(bs);
+                        var results = session.Execute(statement);
                         var count = results.Count();
                         Interlocked.Add(ref _rowCounter, count);
                         Interlocked.Increment(ref _requestCounter);

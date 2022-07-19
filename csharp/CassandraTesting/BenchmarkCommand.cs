@@ -19,13 +19,12 @@ public sealed class BenchmarkCommand : AsyncCommand<BenchmarkSettings>
         var session = await CassandraUtils.ConnectAsync(settings);
         var cts = new CancellationTokenSource();
 
-        var ps = session.Prepare("SELECT * FROM my_table where id < ? ALLOW FILTERING");
-        ps.SetConsistencyLevel(ConsistencyLevel.LocalQuorum);
-        ps.SetIdempotence(false);
-        var bs = ps.Bind(settings.NumberOfRows);
-
+        var statement = new SimpleStatement($"SELECT * FROM my_table where id < {settings.NumberOfRows} ALLOW FILTERING");
+        statement.SetConsistencyLevel(ConsistencyLevel.LocalQuorum);
+        statement.SetReadTimeoutMillis(120000);
+       
         var tasks = Enumerable.Range(0, settings.TaskCount)
-            .Select(x => Worker(session, bs, cts.Token))
+            .Select(x => Worker(session, statement, cts.Token))
             .ToList();
 
         var stopWatch = Stopwatch.StartNew();
@@ -43,13 +42,13 @@ public sealed class BenchmarkCommand : AsyncCommand<BenchmarkSettings>
         return 0;
     }
 
-    async Task Worker(ISession session, BoundStatement bs, CancellationToken ct)
+    async Task Worker(ISession session, Statement statement, CancellationToken ct)
     {
         while (!ct.IsCancellationRequested)
         {
             try
             {
-                var rs = await session.ExecuteAsync(bs);
+                var rs = await session.ExecuteAsync(statement);
                 Interlocked.Add(ref _rowCounter, rs.Count());
                 Interlocked.Increment(ref _requestCounter);
             }

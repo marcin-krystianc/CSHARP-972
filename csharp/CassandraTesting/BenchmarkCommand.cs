@@ -20,7 +20,7 @@ public sealed class BenchmarkCommand : AsyncCommand<BenchmarkSettings>
         var cts = new CancellationTokenSource();
 
         var statement = new SimpleStatement($"SELECT * FROM my_table where id < {settings.NumberOfRows} ALLOW FILTERING");
-        statement.SetConsistencyLevel(ConsistencyLevel.LocalQuorum);
+        statement.SetConsistencyLevel(ConsistencyLevel.LocalOne);
         statement.SetReadTimeoutMillis(120000);
        
         var tasks = Enumerable.Range(0, settings.TaskCount)

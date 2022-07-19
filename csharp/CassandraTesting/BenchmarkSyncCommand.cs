@@ -12,6 +12,8 @@ public sealed class BenchmarkSyncCommand : Command<BenchmarkSettings>
 {
     private long _rowCounter = 0;
     private long _requestCounter = 0;
+    private long _exceptionCounter = 0;
+    private Exception _lastException;
     
     public override int Execute(CommandContext context, BenchmarkSettings settings)
     {
@@ -39,7 +41,8 @@ public sealed class BenchmarkSyncCommand : Command<BenchmarkSettings>
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine($"Exception: {e.Message}");
+                        Interlocked.Increment(ref _exceptionCounter);
+                        _lastException = e;
                     }
                 }
             });
@@ -57,8 +60,11 @@ public sealed class BenchmarkSyncCommand : Command<BenchmarkSettings>
         {
             Thread.Sleep(TimeSpan.FromSeconds(5));
             var rowRate = Interlocked.Read(ref _rowCounter) / stopWatch.Elapsed.TotalSeconds;
-            var requestRate = Interlocked.Read(ref _requestCounter) / stopWatch.Elapsed.TotalSeconds;
-            Console.WriteLine("Rate: {0} rows/second, {1} requests/second", rowRate, requestRate);
+            var requestRate = Interlocked.Read(ref _requestCounter) / stopWatch.Elapsed.TotalSeconds; 
+            var exceptionsRate = Interlocked.Read(ref _exceptionCounter) / stopWatch.Elapsed.TotalSeconds;
+            var lastException = _lastException;
+            _lastException = null;
+            Console.WriteLine("Rate: {0:f2} rows/second, {1:f2} requests/second, {2:f2} exceptions/second: {3}", rowRate, requestRate, exceptionsRate, lastException?.Message ?? "");
         }
         
         for (var i = 0; i < settings.TaskCount; i++)

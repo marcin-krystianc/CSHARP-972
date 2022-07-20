@@ -51,9 +51,22 @@ public class Main {
                 producer.start();
             }
 
-            long start = System.currentTimeMillis();
-            Thread.sleep(60000);
+            Thread logger = new Thread(() -> {
+                long start = System.currentTimeMillis();
+                while (isRunning) {
+                    try {
+                        Thread.sleep(5000);
+                        long elapsed = System.currentTimeMillis() - start;
+                        double rate = counter.get() / (elapsed / 1000.0);
+                        System.out.println("Rate: " + rate + " rows/second");
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
 
+                }
+            });
+            logger.start();
+            Thread.sleep(60000);
             isRunning = false;
             semaphore.acquireUninterruptibly(PERMITS);
 

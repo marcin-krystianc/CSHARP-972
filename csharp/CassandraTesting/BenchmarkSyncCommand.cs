@@ -54,15 +54,28 @@ public sealed class BenchmarkSyncCommand : Command<BenchmarkSettings>
         var stopWatch = Stopwatch.StartNew();
         cts.CancelAfter(TimeSpan.FromSeconds(settings.Duration));
 
+        long lastRowCounter = 0;
+        long lastRequestCounter = 0;
+        var smallSw = stopWatch;
+        
         while (!cts.IsCancellationRequested)
         {
             Thread.Sleep(TimeSpan.FromSeconds(5));
-            var rowRate = Interlocked.Read(ref _rowCounter) / stopWatch.Elapsed.TotalSeconds;
-            var requestRate = Interlocked.Read(ref _requestCounter) / stopWatch.Elapsed.TotalSeconds; 
+            var rowCounter = Interlocked.Read(ref _rowCounter);
+            var requestCounter = Interlocked.Read(ref _requestCounter);
+            var smallRowCounter = rowCounter - lastRowCounter;
+            var smallRequestCounter = requestCounter - lastRequestCounter;
+            lastRowCounter = rowCounter;
+            lastRequestCounter = requestCounter;
+            var rowRate = rowCounter / stopWatch.Elapsed.TotalSeconds;
+            var requestRate = requestCounter / stopWatch.Elapsed.TotalSeconds;
+            var smallRowRate = smallRowCounter / smallSw.Elapsed.TotalSeconds;
+            var smallRequestRate = smallRequestCounter / smallSw.Elapsed.TotalSeconds;
             var exceptionsRate = Interlocked.Read(ref _exceptionCounter) / stopWatch.Elapsed.TotalSeconds;
             var lastException = _lastException;
             _lastException = null;
-            Console.WriteLine("Rate: {0:f2} rows/second, {1:f2} requests/second, {2:f2} exceptions/second: {3}", rowRate, requestRate, exceptionsRate, lastException?.Message ?? "");
+            smallSw = Stopwatch.StartNew();
+            Console.WriteLine("Rate: {0:f2}/{1:f2} rows/second, {2:f2}/{3:f2} requests/second, {4:f2} exceptions/second: {5}", smallRowRate, rowRate, smallRequestRate, requestRate, exceptionsRate, lastException?.Message ?? "");
         }
         
         for (var i = 0; i < settings.TaskCount; i++)

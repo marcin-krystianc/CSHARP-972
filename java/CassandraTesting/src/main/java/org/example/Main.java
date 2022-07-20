@@ -66,6 +66,7 @@ public class Main {
                 }
             });
             logger.start();
+            long start = System.currentTimeMillis();
             Thread.sleep(60000);
             isRunning = false;
             semaphore.acquireUninterruptibly(PERMITS);

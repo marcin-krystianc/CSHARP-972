@@ -9,7 +9,7 @@ public class PopulateCommand : AsyncCommand<PopulateSettings>
     public override async Task<int> ExecuteAsync(CommandContext context, PopulateSettings settings)
     {
         var session = await CassandraUtils.ConnectAsync(settings);
-        var ps = session.Prepare("INSERT INTO my_keyspace.my_table (parition_id, row_id, payload) VALUES  (?, ?, ?)");
+        var ps = session.Prepare("INSERT INTO my_keyspace.my_table (partition_id, row_id, payload) VALUES  (?, ?, ?)");
         ps.SetConsistencyLevel(ConsistencyLevel.LocalQuorum);
         ps.SetIdempotence(false);
             

@@ -20,7 +20,7 @@ public sealed class BenchmarkCommand : AsyncCommand<BenchmarkSettings>
         var session = await CassandraUtils.ConnectAsync(settings);
         var cts = new CancellationTokenSource();
 
-        var statement = new SimpleStatement($"SELECT * FROM my_table where id < {settings.NumberOfRows} ALLOW FILTERING");
+        var statement = new SimpleStatement($"SELECT * FROM my_table where partition_id < {settings.PartitionNumber}");
         statement.SetConsistencyLevel(ConsistencyLevel.LocalOne);
         statement.SetReadTimeoutMillis(120000);
        

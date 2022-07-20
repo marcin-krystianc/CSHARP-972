@@ -10,10 +10,10 @@ public class BenchmarkSettings : CassandraSettings
     [DefaultValue(128)]
     public int TaskCount { get; set; }
     
-    [CommandOption("--rows")]
-    [Description("Number of rows per query")]
-    [DefaultValue(1)]
-    public int NumberOfRows { get; set; }
+    [CommandOption("--partition")]
+    [Description("Id of partition to query")]
+    [DefaultValue(0)]
+    public int PartitionNumber { get; set; }
     
     [CommandOption("--duration")]
     [Description("Duration in seconds")]

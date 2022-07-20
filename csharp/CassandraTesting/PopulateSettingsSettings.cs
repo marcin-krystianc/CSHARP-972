@@ -5,9 +5,9 @@ namespace CassandraTesting;
 
 public class PopulateSettings : CassandraSettings
 {
-    [CommandOption("--rows")]
+    [CommandOption("--partitions")]
     [Description("Number of rows per query")]
     [DefaultValue(1)]
-    public int NumberOfRows { get; set; }
+    public int NumberOfPartitions { get; set; }
     
 }

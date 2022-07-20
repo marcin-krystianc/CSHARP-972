@@ -53,12 +53,15 @@ public class Main {
 
             Thread logger = new Thread(() -> {
                 long start = System.currentTimeMillis();
+                long prevCounter = counter.get();
                 while (isRunning) {
                     try {
                         Thread.sleep(5000);
                         long elapsed = System.currentTimeMillis() - start;
-                        double rate = counter.get() / (elapsed / 1000.0);
-                        System.out.println("Rate: " + rate + " rows/second");
+                        double rate = prevCounter / (elapsed / 1000.0);
+                        prevCounter = counter.get();
+                        start = System.currentTimeMillis();
+                        System.out.println("Current rate: " + rate + " rows/second");
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }

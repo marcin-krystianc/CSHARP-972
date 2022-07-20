@@ -20,7 +20,7 @@ public class Main {
                 .withKeyspace("my_keyspace")
                 .build()) {
 
-            PreparedStatement ps = session.prepare(SimpleStatement.newInstance("SELECT * FROM my_table WHERE id = ?"));
+            PreparedStatement ps = session.prepare(SimpleStatement.newInstance("SELECT * FROM my_table WHERE partition_id = ?"));
 
             AtomicLong counter = new AtomicLong(0);
             final int partition = Integer.parseInt(System.getProperty("test.partition", "0"));

@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using Cassandra;
-using Spectre.Console;
 using Spectre.Console.Cli;
 
 namespace CassandraTesting;

@@ -35,7 +35,7 @@ public class Main {
                 Thread producer = new Thread(() -> {
                     while (isRunning) {
                         semaphore.acquireUninterruptibly();
-                        session.executeAsync(ps.bind(NumRows))
+                        session.executeAsync(ps.bind(partition))
                                 .thenComposeAsync(rs -> countRows(rs, 0, executor), executor)
                                 .whenCompleteAsync((count, error) -> {
                                     if (error != null) {

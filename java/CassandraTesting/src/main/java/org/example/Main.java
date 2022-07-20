@@ -58,8 +58,9 @@ public class Main {
                     try {
                         Thread.sleep(5000);
                         long elapsed = System.currentTimeMillis() - start;
-                        double rate = prevCounter / (elapsed / 1000.0);
-                        prevCounter = counter.get();
+                        long currentCounter = counter.get();
+                        double rate = (currentCounter - prevCounter) / (elapsed / 1000.0);
+                        prevCounter = currentCounter;
                         start = System.currentTimeMillis();
                         System.out.println("Current rate: " + rate + " rows/second");
                     } catch (InterruptedException e) {

@@ -38,7 +38,7 @@ public class Main {
                                 .whenCompleteAsync((count, error) -> {
                                     if (error != null) {
                                         System.err.println(error.getMessage());
-                                        isRunning = false;
+                                        //isRunning = false;
                                     } else {
                                         counter.addAndGet(count);
                                     }
@@ -63,7 +63,6 @@ public class Main {
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
-
                 }
             });
             logger.start();

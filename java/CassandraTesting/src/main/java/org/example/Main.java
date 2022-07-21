@@ -24,12 +24,13 @@ public class Main {
 
             AtomicLong counter = new AtomicLong(0);
             final int partition = Integer.parseInt(System.getProperty("test.partition", "0"));
-            final int THREADS = Integer.parseInt(System.getProperty("test.threads", "400"));
-            final int HELPER_THREADS = Integer.parseInt(System.getProperty("test.helper.threads", "10"));
+            int THREADS = Integer.parseInt(System.getProperty("test.threads", "400"));
             final int PERMITS = Integer.parseInt(System.getProperty("test.permits", "400"));
+            final int HELPER_THREADS = Integer.parseInt(System.getProperty("test.helper.threads", "10"));
             Executor executor = Executors.newFixedThreadPool(HELPER_THREADS);
             Semaphore semaphore = new Semaphore(PERMITS);
             BoundStatement bs = ps.bind(partition);
+            THREADS = 1;
 
             // producer that submits the queries.
             for (int i = 0; i < THREADS; i++) {

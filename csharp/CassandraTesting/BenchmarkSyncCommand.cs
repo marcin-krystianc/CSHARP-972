@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using Cassandra;
 using Spectre.Console.Cli;
 
@@ -23,10 +25,10 @@ public sealed class BenchmarkSyncCommand : Command<BenchmarkSettings>
         statement.SetConsistencyLevel(ConsistencyLevel.LocalOne);
         statement.SetReadTimeoutMillis(120000);
 
-        var threads = new Thread[settings.TaskCount];
+        var threads = new List<Thread>();
         for (var i = 0; i < settings.TaskCount; i++)
         {
-            threads[i] = new Thread(() =>
+            var thread = new Thread(() =>
             {
                 while (!cts.Token.IsCancellationRequested)
                 {
@@ -44,6 +46,8 @@ public sealed class BenchmarkSyncCommand : Command<BenchmarkSettings>
                     }
                 }
             });
+            
+            threads.Add(thread);
         }
 
         for (var i = 0; i < settings.TaskCount; i++)
@@ -52,7 +56,34 @@ public sealed class BenchmarkSyncCommand : Command<BenchmarkSettings>
         }
         
         var stopWatch = Stopwatch.StartNew();
-        cts.CancelAfter(TimeSpan.FromSeconds(settings.Duration));
+        if (settings.Duration.HasValue)
+        {
+            cts.CancelAfter(TimeSpan.FromSeconds(settings.Duration.Value));
+        }
+
+        if (settings.Records.HasValue)
+        {
+            var thread = new Thread(() =>
+            {
+                while (true)
+                {
+                    Thread.Sleep(1);
+                    var rowCounter = Interlocked.Read(ref _rowCounter);
+                    var requestCounter = Interlocked.Read(ref _requestCounter);
+
+                    if (rowCounter > settings.Records.Value ||
+                        requestCounter > settings.Records.Value)
+                    {
+                        break;
+                    }
+
+                    Console.WriteLine("Read rows {0}, requests {1}", rowCounter, requestCounter);
+                    cts.Cancel();
+                }
+            });
+            
+            threads.Add(thread);
+        }
 
         long lastRowCounter = 0;
         long lastRequestCounter = 0;
@@ -78,9 +109,9 @@ public sealed class BenchmarkSyncCommand : Command<BenchmarkSettings>
             Console.WriteLine("Rate: {0:f2}/{1:f2} rows/second, {2:f2}/{3:f2} requests/second, {4:f2} exceptions/second: {5}", smallRowRate, rowRate, smallRequestRate, requestRate, exceptionsRate, lastException?.Message ?? "");
         }
         
-        for (var i = 0; i < settings.TaskCount; i++)
+        foreach (var thread in threads)
         {
-            threads[i].Join();
+            thread.Join();
         }
         
         return 0;

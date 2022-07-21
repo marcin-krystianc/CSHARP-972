@@ -7,7 +7,7 @@ public class BenchmarkSettings : CassandraSettings
 {
     [CommandOption("--tasks")]
     [Description("Number of tasks")]
-    [DefaultValue(128)]
+    [DefaultValue(1)]
     public int TaskCount { get; set; }
     
     [CommandOption("--partition")]
@@ -17,6 +17,9 @@ public class BenchmarkSettings : CassandraSettings
     
     [CommandOption("--duration")]
     [Description("Duration in seconds")]
-    [DefaultValue(60)]
-    public int Duration { get; set; }
+    public int? Duration { get; set; }
+    
+    [CommandOption("--records")]
+    [Description("Records or requests to read, then stop.")]
+    public long? Records { get; set; }
 }

@@ -74,6 +74,7 @@ public class Main {
             Thread.sleep(60000);
             isRunning = false;
             semaphore.acquireUninterruptibly(PERMITS);
+            logger.join();
 
             long elapsed = System.currentTimeMillis() - start;
             double rate = counter.get() / (elapsed / 1000.0);

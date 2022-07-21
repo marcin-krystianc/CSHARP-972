@@ -26,10 +26,35 @@ public sealed class BenchmarkCommand : AsyncCommand<BenchmarkSettings>
        
         var tasks = Enumerable.Range(0, settings.TaskCount)
             .Select(x => Worker(session, statement, cts.Token))
-            .ToArray();
+            .ToList();
 
         var stopWatch = Stopwatch.StartNew();
-        cts.CancelAfter(TimeSpan.FromSeconds(settings.Duration));
+        if (settings.Duration.HasValue)
+        {
+            cts.CancelAfter(TimeSpan.FromSeconds(settings.Duration.Value));
+        }
+
+        if (settings.Records.HasValue)
+        {
+            tasks.Add(Task.Run(async () =>
+            {
+                while (true)
+                {
+                    await Task.Delay(1);
+                    var rowCounter = Interlocked.Read(ref _rowCounter);
+                    var requestCounter = Interlocked.Read(ref _requestCounter);
+                    
+                    if (rowCounter > settings.Records.Value ||
+                        requestCounter > settings.Records.Value)
+                    {
+                        break;
+                    }
+
+                    Console.WriteLine("Read rows {0}, requests {1}", rowCounter, requestCounter);
+                    cts.Cancel();
+                }
+            }));
+        }
 
         long lastRowCounter = 0;
         long lastRequestCounter = 0;

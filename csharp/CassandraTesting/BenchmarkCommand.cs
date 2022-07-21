@@ -47,12 +47,12 @@ public sealed class BenchmarkCommand : AsyncCommand<BenchmarkSettings>
                     if (rowCounter > settings.Records.Value ||
                         requestCounter > settings.Records.Value)
                     {
+                        Console.WriteLine("Read rows {0}, requests {1}", rowCounter, requestCounter);
                         break;
                     }
-
-                    Console.WriteLine("Read rows {0}, requests {1}", rowCounter, requestCounter);
-                    cts.Cancel();
                 }
+
+                cts.Cancel();
             }));
         }
 

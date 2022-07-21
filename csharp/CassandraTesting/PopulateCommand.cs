@@ -12,8 +12,7 @@ public class PopulateCommand : AsyncCommand<PopulateSettings>
         var session = await CassandraUtils.ConnectAsync(settings);
         var ps = session.Prepare("INSERT INTO my_keyspace.my_table (partition_id, row_id, payload) VALUES  (?, ?, ?)");
         ps.SetConsistencyLevel(ConsistencyLevel.LocalQuorum);
-        ps.SetIdempotence(false);
-
+        
         for (var partition = 0; partition < settings.NumberOfPartitions; partition++)
         {
             int numberOfRows = Convert.ToInt32(Math.Pow(10, partition));

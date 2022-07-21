@@ -37,7 +37,7 @@ public sealed class BenchmarkCommand : AsyncCommand<BenchmarkSettings>
         
         while (!cts.IsCancellationRequested)
         {
-            await Task.Delay(TimeSpan.FromSeconds(5), cts.Token);
+            await Task.Delay(TimeSpan.FromSeconds(5));
             var rowCounter = Interlocked.Read(ref _rowCounter);
             var requestCounter = Interlocked.Read(ref _requestCounter);
             var smallRowCounter = rowCounter - lastRowCounter;

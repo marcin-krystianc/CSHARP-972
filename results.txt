@@ -1,0 +1,305 @@
+SYNC partition = 0:
+------ 1
+Rate: 4335.99/4335.99 rows/second, 4335.99/4335.99 requests/second, 0.00 exceptions/second:
+Rate: 4514.94/4425.53 rows/second, 4514.94/4425.53 requests/second, 0.00 exceptions/second:
+Rate: 4555.59/4468.86 rows/second, 4555.59/4468.86 requests/second, 0.00 exceptions/second:
+Rate: 4150.44/4389.28 rows/second, 4150.44/4389.28 requests/second, 0.00 exceptions/second:
+Rate: 4487.64/4408.95 rows/second, 4487.64/4408.95 requests/second, 0.00 exceptions/second:
+Rate: 4186.26/4371.84 rows/second, 4186.26/4371.84 requests/second, 0.00 exceptions/second:
+------ 2
+Rate: 8823.56/8823.56 rows/second, 8823.56/8823.56 requests/second, 0.00 exceptions/second:
+Rate: 8839.83/8831.70 rows/second, 8839.83/8831.70 requests/second, 0.00 exceptions/second:
+Rate: 9041.23/8901.51 rows/second, 9041.23/8901.51 requests/second, 0.00 exceptions/second:
+Rate: 9095.25/8949.93 rows/second, 9095.25/8949.93 requests/second, 0.00 exceptions/second:
+Rate: 8981.46/8956.23 rows/second, 8981.46/8956.23 requests/second, 0.00 exceptions/second:
+Rate: 8898.77/8946.66 rows/second, 8898.77/8946.66 requests/second, 0.00 exceptions/second:
+------ 4
+Rate: 16063.45/16063.45 rows/second, 16063.45/16063.45 requests/second, 0.00 exceptions/second:
+Rate: 17145.98/16605.12 rows/second, 17145.98/16605.12 requests/second, 0.00 exceptions/second:
+Rate: 17124.02/16777.99 rows/second, 17124.02/16777.99 requests/second, 0.00 exceptions/second:
+Rate: 17345.96/16919.91 rows/second, 17345.96/16919.91 requests/second, 0.00 exceptions/second:
+Rate: 17145.59/16965.03 rows/second, 17145.59/16965.03 requests/second, 0.00 exceptions/second:
+Rate: 17030.58/16975.95 rows/second, 17030.58/16975.95 requests/second, 0.00 exceptions/second:
+------ 8
+Rate: 30164.10/30164.11 rows/second, 30164.10/30164.10 requests/second, 0.00 exceptions/second:
+Rate: 31466.16/30815.53 rows/second, 31466.16/30815.53 requests/second, 0.00 exceptions/second:
+Rate: 31024.72/30885.23 rows/second, 31024.72/30885.23 requests/second, 0.00 exceptions/second:
+Rate: 31703.37/31089.66 rows/second, 31703.37/31089.66 requests/second, 0.00 exceptions/second:
+Rate: 31358.66/31143.44 rows/second, 31358.66/31143.44 requests/second, 0.00 exceptions/second:
+Rate: 30962.07/31113.22 rows/second, 30962.07/31113.22 requests/second, 0.00 exceptions/second:
+------ 16
+Rate: 51767.62/51767.63 rows/second, 51767.62/51767.62 requests/second, 0.00 exceptions/second:
+Rate: 52729.21/52248.68 rows/second, 52729.21/52248.67 requests/second, 0.00 exceptions/second:
+Rate: 50953.91/51817.36 rows/second, 50953.91/51817.36 requests/second, 0.00 exceptions/second:
+Rate: 50448.66/51475.34 rows/second, 50448.66/51475.34 requests/second, 0.00 exceptions/second:
+Rate: 51508.91/51482.05 rows/second, 51508.91/51482.05 requests/second, 0.00 exceptions/second:
+Rate: 51035.41/51407.63 rows/second, 51035.41/51407.63 requests/second, 0.00 exceptions/second:
+------ 32
+Rate: 76734.96/76734.96 rows/second, 76734.96/76734.96 requests/second, 0.00 exceptions/second:
+Rate: 77566.56/77150.92 rows/second, 77566.56/77150.92 requests/second, 0.00 exceptions/second:
+Rate: 77915.88/77405.70 rows/second, 77915.88/77405.70 requests/second, 0.00 exceptions/second:
+Rate: 77968.05/77546.20 rows/second, 77968.05/77546.20 requests/second, 0.00 exceptions/second:
+Rate: 77630.07/77562.96 rows/second, 77630.07/77562.96 requests/second, 0.00 exceptions/second:
+Rate: 77351.50/77527.72 rows/second, 77351.50/77527.72 requests/second, 0.00 exceptions/second:
+------ 64
+Rate: 92962.27/92962.27 rows/second, 92962.27/92962.27 requests/second, 0.00 exceptions/second:
+Rate: 97812.12/95387.41 rows/second, 97812.12/95387.41 requests/second, 0.00 exceptions/second:
+Rate: 98771.59/96514.33 rows/second, 98771.59/96514.33 requests/second, 0.00 exceptions/second:
+Rate: 98733.26/97068.63 rows/second, 98733.26/97068.63 requests/second, 0.00 exceptions/second:
+Rate: 98245.13/97304.06 rows/second, 98245.13/97304.06 requests/second, 0.00 exceptions/second:
+Rate: 97978.40/97416.23 rows/second, 97978.40/97416.23 requests/second, 0.00 exceptions/second:
+------ 128
+Rate: 86690.99/86690.99 rows/second, 86690.99/86690.99 requests/second, 0.00 exceptions/second:
+Rate: 90234.84/88461.97 rows/second, 90234.84/88461.97 requests/second, 0.00 exceptions/second:
+Rate: 92003.82/89639.31 rows/second, 92003.82/89639.31 requests/second, 0.00 exceptions/second:
+Rate: 91803.93/90179.33 rows/second, 91803.93/90179.33 requests/second, 0.00 exceptions/second:
+Rate: 91008.30/90344.84 rows/second, 91008.30/90344.84 requests/second, 0.00 exceptions/second:
+Rate: 89458.39/90197.30 rows/second, 89458.39/90197.30 requests/second, 0.00 exceptions/second:
+------ 256
+Rate: 70933.49/70933.49 rows/second, 70933.49/70933.49 requests/second, 0.00 exceptions/second:
+Rate: 73239.98/72023.90 rows/second, 73239.98/72023.90 requests/second, 0.00 exceptions/second:
+Rate: 81480.43/75149.40 rows/second, 81480.42/75149.39 requests/second, 0.00 exceptions/second:
+Rate: 81093.77/76629.10 rows/second, 81093.77/76629.10 requests/second, 0.00 exceptions/second:
+Rate: 81365.20/77573.07 rows/second, 81365.20/77573.07 requests/second, 0.00 exceptions/second:
+Rate: 80875.49/78121.87 rows/second, 80875.49/78121.87 requests/second, 0.00 exceptions/second:
+
+ASYNC:
+------ async 1
+Rate: 4656.30/4656.30 rows/second, 4656.30/4656.30 requests/second, 0.00 exceptions/second:
+Rate: 4750.39/4703.38 rows/second, 4750.39/4703.38 requests/second, 0.00 exceptions/second:
+Rate: 4750.54/4719.09 rows/second, 4750.54/4719.09 requests/second, 0.00 exceptions/second:
+Rate: 4664.75/4705.51 rows/second, 4664.75/4705.51 requests/second, 0.00 exceptions/second:
+Rate: 4670.47/4698.51 rows/second, 4670.47/4698.51 requests/second, 0.00 exceptions/second:
+Rate: 4719.28/4701.97 rows/second, 4719.28/4701.97 requests/second, 0.00 exceptions/second:
+------ async 2
+Rate: 9123.76/9123.76 rows/second, 9123.76/9123.76 requests/second, 0.00 exceptions/second:
+Rate: 9289.53/9206.66 rows/second, 9289.53/9206.66 requests/second, 0.00 exceptions/second:
+Rate: 9302.52/9238.61 rows/second, 9302.52/9238.61 requests/second, 0.00 exceptions/second:
+Rate: 9314.23/9257.51 rows/second, 9314.23/9257.51 requests/second, 0.00 exceptions/second:
+Rate: 9006.27/9207.27 rows/second, 9006.27/9207.27 requests/second, 0.00 exceptions/second:
+Rate: 9101.95/9189.72 rows/second, 9101.95/9189.72 requests/second, 0.00 exceptions/second:
+------ async 4
+Rate: 17610.92/17610.92 rows/second, 17610.92/17610.92 requests/second, 0.00 exceptions/second:
+Rate: 18121.74/17866.53 rows/second, 18121.74/17866.53 requests/second, 0.00 exceptions/second:
+Rate: 18391.62/18041.53 rows/second, 18391.62/18041.53 requests/second, 0.00 exceptions/second:
+Rate: 18475.66/18150.05 rows/second, 18475.66/18150.05 requests/second, 0.00 exceptions/second:
+Rate: 18742.02/18268.40 rows/second, 18742.02/18268.40 requests/second, 0.00 exceptions/second:
+Rate: 18708.53/18341.77 rows/second, 18708.53/18341.77 requests/second, 0.00 exceptions/second:
+------ async 8
+Rate: 33672.50/33672.50 rows/second, 33672.50/33672.50 requests/second, 0.00 exceptions/second:
+Rate: 34283.72/33978.37 rows/second, 34283.72/33978.37 requests/second, 0.00 exceptions/second:
+Rate: 34569.58/34175.35 rows/second, 34569.58/34175.35 requests/second, 0.00 exceptions/second:
+Rate: 34904.21/34357.56 rows/second, 34904.21/34357.56 requests/second, 0.00 exceptions/second:
+Rate: 34545.48/34395.13 rows/second, 34545.48/34395.13 requests/second, 0.00 exceptions/second:
+Rate: 34273.20/34374.82 rows/second, 34273.20/34374.82 requests/second, 0.00 exceptions/second:
+------ async 16
+Rate: 64860.28/64860.28 rows/second, 64860.28/64860.28 requests/second, 0.00 exceptions/second:
+Rate: 66732.46/65797.23 rows/second, 66732.46/65797.23 requests/second, 0.00 exceptions/second:
+Rate: 65754.37/65782.95 rows/second, 65754.37/65782.95 requests/second, 0.00 exceptions/second:
+Rate: 64480.24/65457.31 rows/second, 64480.24/65457.31 requests/second, 0.00 exceptions/second:
+Rate: 65600.76/65485.98 rows/second, 65600.76/65485.98 requests/second, 0.00 exceptions/second:
+Rate: 65507.07/65489.49 rows/second, 65507.07/65489.49 requests/second, 0.00 exceptions/second:
+------ async 32
+Rate: 94924.35/94924.35 rows/second, 94924.35/94924.35 requests/second, 0.00 exceptions/second:
+Rate: 96619.20/95772.19 rows/second, 96619.20/95772.19 requests/second, 0.00 exceptions/second:
+Rate: 96982.79/96175.64 rows/second, 96982.79/96175.64 requests/second, 0.00 exceptions/second:
+Rate: 96365.68/96223.12 rows/second, 96365.68/96223.12 requests/second, 0.00 exceptions/second:
+Rate: 95945.35/96167.58 rows/second, 95945.35/96167.58 requests/second, 0.00 exceptions/second:
+Rate: 96073.24/96151.87 rows/second, 96073.24/96151.87 requests/second, 0.00 exceptions/second:
+------ async 64
+Rate: 116475.58/116475.59 rows/second, 116475.58/116475.58 requests/second, 0.00 exceptions/second:
+Rate: 117674.10/117075.01 rows/second, 117674.10/117075.01 requests/second, 0.00 exceptions/second:
+Rate: 119942.30/118029.94 rows/second, 119942.30/118029.93 requests/second, 0.00 exceptions/second:
+Rate: 117854.54/117986.11 rows/second, 117854.54/117986.11 requests/second, 0.00 exceptions/second:
+Rate: 119762.71/118341.21 rows/second, 119762.71/118341.21 requests/second, 0.00 exceptions/second:
+Rate: 122883.23/119098.25 rows/second, 122883.23/119098.25 requests/second, 0.00 exceptions/second:
+------ async 128
+Rate: 145376.16/145376.17 rows/second, 145376.16/145376.17 requests/second, 0.00 exceptions/second:
+Rate: 148171.65/146775.03 rows/second, 148171.65/146775.03 requests/second, 0.00 exceptions/second:
+Rate: 148878.76/147476.06 rows/second, 148878.76/147476.06 requests/second, 0.00 exceptions/second:
+Rate: 149294.42/147930.62 rows/second, 149294.41/147930.61 requests/second, 0.00 exceptions/second:
+Rate: 150294.22/148403.03 rows/second, 150294.21/148403.03 requests/second, 0.00 exceptions/second:
+Rate: 149088.06/148517.16 rows/second, 149088.06/148517.16 requests/second, 0.00 exceptions/second:
+------ async 256
+Rate: 159377.77/159377.77 rows/second, 159377.77/159377.77 requests/second, 0.00 exceptions/second:
+Rate: 158833.24/159105.23 rows/second, 158833.24/159105.23 requests/second, 0.00 exceptions/second:
+Rate: 161493.77/159900.90 rows/second, 161493.76/159900.90 requests/second, 0.00 exceptions/second:
+Rate: 160926.17/160157.15 rows/second, 160926.17/160157.15 requests/second, 0.00 exceptions/second:
+Rate: 161498.51/160425.38 rows/second, 161498.51/160425.38 requests/second, 0.00 exceptions/second:
+Rate: 160203.03/160388.32 rows/second, 160203.03/160388.32 requests/second, 0.00 exceptions/second:
+------ async 512
+Rate: 153869.87/153869.88 rows/second, 153869.87/153869.87 requests/second, 0.00 exceptions/second:
+Rate: 159919.24/156896.14 rows/second, 159919.24/156896.14 requests/second, 0.00 exceptions/second:
+Rate: 157774.04/157188.56 rows/second, 157774.04/157188.56 requests/second, 0.00 exceptions/second:
+Rate: 160323.94/157972.07 rows/second, 160323.94/157972.07 requests/second, 0.00 exceptions/second:
+Rate: 160996.47/158576.79 rows/second, 160996.47/158576.79 requests/second, 0.00 exceptions/second:
+Rate: 163998.73/159481.21 rows/second, 163998.73/159481.20 requests/second, 0.00 exceptions/second:
+------ async 1024
+Rate: 157245.61/157245.62 rows/second, 157245.61/157245.61 requests/second, 0.00 exceptions/second:
+Rate: 156476.34/156859.69 rows/second, 156476.34/156859.69 requests/second, 0.00 exceptions/second:
+Rate: 157312.28/157010.22 rows/second, 157312.28/157010.22 requests/second, 0.00 exceptions/second:
+Rate: 158030.12/157264.91 rows/second, 158030.12/157264.91 requests/second, 0.00 exceptions/second:
+Rate: 158050.79/157421.95 rows/second, 158050.79/157421.95 requests/second, 0.00 exceptions/second:
+Rate: 154661.73/156961.53 rows/second, 154661.73/156961.53 requests/second, 0.00 exceptions/second:
+
+partition=3 (1k records per query:
+root@a3257d8054a1:/CSHARP-972/csharp/CassandraTesting# echo "------ 1" && dotnet run --project CassandraTesting.csproj --configuration Release -- benchmark-sync  --hostname=cassandra --port=9042 --no-ssl --partition=3 --duration=30 --tasks=1 &&
+> echo "------ 2" && dotnet run --project CassandraTesting.csproj --configuration Release -- benchmark-sync  --hostname=cassandra --port=9042 --no-ssl --partition=3 --duration=30 --tasks=2 &&
+> echo "------ 4" && dotnet run --project CassandraTesting.csproj --configuration Release -- benchmark-sync  --hostname=cassandra --port=9042 --no-ssl --partition=3 --duration=30 --tasks=4 &&
+> echo "------ 8" && dotnet run --project CassandraTesting.csproj --configuration Release -- benchmark-sync  --hostname=cassandra --port=9042 --no-ssl --partition=3 --duration=30 --tasks=8 &&
+> echo "------ 16" && dotnet run --project CassandraTesting.csproj --configuration Release -- benchmark-sync  --hostname=cassandra --port=9042 --no-ssl --partition=3 --duration=30 --tasks=16 &&
+> echo "------ 32" && dotnet run --project CassandraTesting.csproj --configuration Release -- benchmark-sync  --hostname=cassandra --port=9042 --no-ssl --partition=3 --duration=30 --tasks=32 &&
+> echo "------ 64" && dotnet run --project CassandraTesting.csproj --configuration Release -- benchmark-sync  --hostname=cassandra --port=9042 --no-ssl --partition=3 --duration=30 --tasks=64 &&
+> echo "------ 128" && dotnet run --project CassandraTesting.csproj --configuration Release -- benchmark-sync  --hostname=cassandra --port=9042 --no-ssl --partition=3 --duration=30 --tasks=128 &&
+> echo "------ 256" && dotnet run --project CassandraTesting.csproj --configuration Release -- benchmark-sync  --hostname=cassandra --port=9042 --no-ssl --partition=3 --duration=30 --tasks=256 &&
+> echo "------ async 1" && dotnet run --project CassandraTesting.csproj --configuration Release -- benchmark --hostname=cassandra --port=9042 --no-ssl --partition=3 --duration=30 --tasks=1 &&
+> echo "------ async 2" && dotnet run --project CassandraTesting.csproj --configuration Release -- benchmark --hostname=cassandra --port=9042 --no-ssl --partition=3 --duration=30 --tasks=2 &&
+> echo "------ async 4" && dotnet run --project CassandraTesting.csproj --configuration Release -- benchmark --hostname=cassandra --port=9042 --no-ssl --partition=3 --duration=30 --tasks=4 &&
+> echo "------ async 8" && dotnet run --project CassandraTesting.csproj --configuration Release -- benchmark --hostname=cassandra --port=9042 --no-ssl --partition=3 --duration=30 --tasks=8 &&
+> echo "------ async 16" && dotnet run --project CassandraTesting.csproj --configuration Release -- benchmark --hostname=cassandra --port=9042 --no-ssl --partition=3 --duration=30 --tasks=16 &&
+> echo "------ async 32" && dotnet run --project CassandraTesting.csproj --configuration Release -- benchmark --hostname=cassandra --port=9042 --no-ssl --partition=3 --duration=30 --tasks=32 &&
+> echo "------ async 64" && dotnet run --project CassandraTesting.csproj --configuration Release -- benchmark --hostname=cassandra --port=9042 --no-ssl --partition=3 --duration=30 --tasks=64 &&
+> echo "------ async 128" && dotnet run --project CassandraTesting.csproj --configuration Release -- benchmark --hostname=cassandra --port=9042 --no-ssl --partition=3 --duration=30 --tasks=128 &&
+> echo "------ async 256" && dotnet run --project CassandraTesting.csproj --configuration Release -- benchmark --hostname=cassandra --port=9042 --no-ssl --partition=3 --duration=30 --tasks=256 &&
+> echo "------ async 512" && dotnet run --project CassandraTesting.csproj --configuration Release -- benchmark --hostname=cassandra --port=9042 --no-ssl --partition=3 --duration=30 --tasks=512 &&
+> echo "------ async 1024" && dotnet run --project CassandraTesting.csproj --configuration Release -- benchmark --hostname=cassandra --port=9042 --no-ssl --partition=3 --duration=30 --tasks=1024
+------ 1
+Rate: 643773.21/643773.23 rows/second, 643.77/643.77 requests/second, 0.00 exceptions/second:
+Rate: 639380.17/641575.28 rows/second, 639.38/641.58 requests/second, 0.00 exceptions/second:
+Rate: 652576.60/645241.01 rows/second, 652.58/645.24 requests/second, 0.00 exceptions/second:
+Rate: 646175.77/645474.13 rows/second, 646.18/645.47 requests/second, 0.00 exceptions/second:
+Rate: 643583.09/645095.92 rows/second, 643.58/645.10 requests/second, 0.00 exceptions/second:
+Rate: 638784.43/644044.18 rows/second, 638.78/644.04 requests/second, 0.00 exceptions/second:
+------ 2
+Rate: 1232924.59/1232924.67 rows/second, 1232.92/1232.92 requests/second, 0.00 exceptions/second:
+Rate: 1282738.85/1257846.92 rows/second, 1282.74/1257.85 requests/second, 0.00 exceptions/second:
+Rate: 1264338.20/1260009.39 rows/second, 1264.34/1260.01 requests/second, 0.00 exceptions/second:
+Rate: 1279750.96/1264943.03 rows/second, 1279.75/1264.94 requests/second, 0.00 exceptions/second:
+Rate: 1284948.29/1268942.90 rows/second, 1284.95/1268.94 requests/second, 0.00 exceptions/second:
+Rate: 1247769.95/1265414.75 rows/second, 1247.77/1265.41 requests/second, 0.00 exceptions/second:
+------ 4
+Rate: 2335924.13/2335924.27 rows/second, 2335.92/2335.92 requests/second, 0.00 exceptions/second:
+Rate: 2383918.81/2359936.17 rows/second, 2383.92/2359.94 requests/second, 0.00 exceptions/second:
+Rate: 2425870.75/2381902.37 rows/second, 2425.87/2381.90 requests/second, 0.00 exceptions/second:
+Rate: 2425921.11/2392901.93 rows/second, 2425.92/2392.90 requests/second, 0.00 exceptions/second:
+Rate: 2414499.41/2397219.21 rows/second, 2414.50/2397.22 requests/second, 0.00 exceptions/second:
+Rate: 2426730.79/2402136.18 rows/second, 2426.73/2402.14 requests/second, 0.00 exceptions/second:
+------ 8
+Rate: 3796020.75/3796020.98 rows/second, 3796.02/3796.02 requests/second, 0.00 exceptions/second:
+Rate: 3883285.42/3839676.46 rows/second, 3883.29/3839.68 requests/second, 0.00 exceptions/second:
+Rate: 3909539.39/3862950.20 rows/second, 3909.54/3862.95 requests/second, 0.00 exceptions/second:
+Rate: 3906268.28/3873773.78 rows/second, 3906.27/3873.77 requests/second, 0.00 exceptions/second:
+Rate: 3910292.62/3881074.09 rows/second, 3910.29/3881.07 requests/second, 0.00 exceptions/second:
+Rate: 3881451.50/3881136.32 rows/second, 3881.45/3881.14 requests/second, 0.00 exceptions/second:
+------ 16
+Rate: 4828088.85/4828089.14 rows/second, 4828.09/4828.09 requests/second, 0.00 exceptions/second:
+Rate: 4890684.39/4859406.14 rows/second, 4890.68/4859.41 requests/second, 0.00 exceptions/second:
+Rate: 4877787.53/4865526.34 rows/second, 4877.79/4865.53 requests/second, 0.00 exceptions/second:
+Rate: 4741413.85/4834514.06 rows/second, 4741.41/4834.51 requests/second, 0.00 exceptions/second:
+Rate: 4808849.58/4829382.86 rows/second, 4808.85/4829.38 requests/second, 0.00 exceptions/second:
+Rate: 4902203.81/4841513.78 rows/second, 4902.20/4841.51 requests/second, 0.00 exceptions/second:
+------ 32
+Rate: 5011138.07/5011138.27 rows/second, 5011.14/5011.14 requests/second, 0.00 exceptions/second:
+Rate: 5093680.19/5052436.70 rows/second, 5093.68/5052.44 requests/second, 0.00 exceptions/second:
+Rate: 5119808.62/5074869.48 rows/second, 5119.81/5074.87 requests/second, 0.00 exceptions/second:
+Rate: 5084849.69/5077357.98 rows/second, 5084.85/5077.36 requests/second, 0.00 exceptions/second:
+Rate: 5049404.59/5071770.19 rows/second, 5049.40/5071.77 requests/second, 0.00 exceptions/second:
+Rate: 5125276.58/5080682.89 rows/second, 5125.28/5080.68 requests/second, 0.00 exceptions/second:
+------ 64
+Rate: 5180654.95/5180655.26 rows/second, 5180.65/5180.65 requests/second, 0.00 exceptions/second:
+Rate: 5162738.38/5171695.54 rows/second, 5162.74/5171.70 requests/second, 0.00 exceptions/second:
+Rate: 5083979.35/5142482.90 rows/second, 5083.98/5142.48 requests/second, 0.00 exceptions/second:
+Rate: 4983839.72/5102852.61 rows/second, 4983.84/5102.85 requests/second, 0.00 exceptions/second:
+Rate: 5140618.02/5110400.30 rows/second, 5140.62/5110.40 requests/second, 0.00 exceptions/second:
+Rate: 5166273.94/5119707.41 rows/second, 5166.27/5119.71 requests/second, 0.00 exceptions/second:
+------ 128
+Rate: 5209818.33/5209818.75 rows/second, 5209.82/5209.82 requests/second, 0.00 exceptions/second:
+Rate: 5276618.56/5243109.55 rows/second, 5276.62/5243.11 requests/second, 0.00 exceptions/second:
+Rate: 5149209.27/5211846.48 rows/second, 5149.21/5211.85 requests/second, 0.00 exceptions/second:
+Rate: 5193782.87/5207306.61 rows/second, 5193.78/5207.31 requests/second, 0.00 exceptions/second:
+Rate: 5169712.74/5199779.25 rows/second, 5169.71/5199.78 requests/second, 0.00 exceptions/second:
+Rate: 5168649.70/5194598.11 rows/second, 5168.65/5194.60 requests/second, 0.00 exceptions/second:
+------ 256
+Rate: 4649055.45/4649055.72 rows/second, 4649.06/4649.06 requests/second, 0.00 exceptions/second:
+Rate: 4351729.34/4502066.08 rows/second, 4351.73/4502.07 requests/second, 0.00 exceptions/second:
+Rate: 4365618.13/4456295.01 rows/second, 4365.62/4456.29 requests/second, 0.00 exceptions/second:
+Rate: 4352565.24/4427051.39 rows/second, 4352.57/4427.05 requests/second, 0.00 exceptions/second:
+Rate: 3935633.92/4329422.52 rows/second, 3935.63/4329.42 requests/second, 0.00 exceptions/second:
+Rate: 4061096.85/4284966.78 rows/second, 4061.10/4284.97 requests/second, 0.00 exceptions/second:
+------ async 1
+Rate: 641437.60/641437.61 rows/second, 641.44/641.44 requests/second, 0.00 exceptions/second:
+Rate: 664521.32/652985.75 rows/second, 664.52/652.99 requests/second, 0.00 exceptions/second:
+Rate: 673492.94/659820.04 rows/second, 673.49/659.82 requests/second, 0.00 exceptions/second:
+Rate: 650429.65/657472.10 rows/second, 650.43/657.47 requests/second, 0.00 exceptions/second:
+Rate: 665562.08/659089.62 rows/second, 665.56/659.09 requests/second, 0.00 exceptions/second:
+Rate: 662688.10/659689.57 rows/second, 662.69/659.69 requests/second, 0.00 exceptions/second:
+------ async 2
+Rate: 1262977.50/1262977.53 rows/second, 1262.98/1262.98 requests/second, 0.00 exceptions/second:
+Rate: 1312510.41/1287765.43 rows/second, 1312.51/1287.77 requests/second, 0.00 exceptions/second:
+Rate: 1282206.90/1285913.46 rows/second, 1282.21/1285.91 requests/second, 0.00 exceptions/second:
+Rate: 1288586.26/1286581.64 rows/second, 1288.59/1286.58 requests/second, 0.00 exceptions/second:
+Rate: 1296398.90/1288544.08 rows/second, 1296.40/1288.54 requests/second, 0.00 exceptions/second:
+Rate: 1301924.67/1290774.76 rows/second, 1301.92/1290.77 requests/second, 0.00 exceptions/second:
+------ async 4
+Rate: 2383739.48/2383739.58 rows/second, 2383.74/2383.74 requests/second, 0.00 exceptions/second:
+Rate: 2454934.54/2419356.03 rows/second, 2454.93/2419.36 requests/second, 0.00 exceptions/second:
+Rate: 2454911.87/2431207.75 rows/second, 2454.91/2431.21 requests/second, 0.00 exceptions/second:
+Rate: 2468760.61/2440592.65 rows/second, 2468.76/2440.59 requests/second, 0.00 exceptions/second:
+Rate: 2422612.79/2436996.97 rows/second, 2422.61/2437.00 requests/second, 0.00 exceptions/second:
+Rate: 2438549.84/2437255.79 rows/second, 2438.55/2437.26 requests/second, 0.00 exceptions/second:
+------ async 8
+Rate: 3831806.57/3831806.65 rows/second, 3831.81/3831.81 requests/second, 0.00 exceptions/second:
+Rate: 3916725.76/3874295.79 rows/second, 3916.73/3874.30 requests/second, 0.00 exceptions/second:
+Rate: 3907296.46/3885290.69 rows/second, 3907.30/3885.29 requests/second, 0.00 exceptions/second:
+Rate: 3925006.06/3895215.29 rows/second, 3925.01/3895.22 requests/second, 0.00 exceptions/second:
+Rate: 3945333.60/3905238.95 rows/second, 3945.33/3905.24 requests/second, 0.00 exceptions/second:
+Rate: 3912867.17/3906509.33 rows/second, 3912.87/3906.51 requests/second, 0.00 exceptions/second:
+------ async 16
+Rate: 4828005.63/4828005.72 rows/second, 4828.01/4828.01 requests/second, 0.00 exceptions/second:
+Rate: 4965503.17/4896811.90 rows/second, 4965.50/4896.81 requests/second, 0.00 exceptions/second:
+Rate: 4864465.77/4886034.98 rows/second, 4864.47/4886.03 requests/second, 0.00 exceptions/second:
+Rate: 4640392.09/4824598.14 rows/second, 4640.39/4824.60 requests/second, 0.00 exceptions/second:
+Rate: 4831550.12/4825987.71 rows/second, 4831.55/4825.99 requests/second, 0.00 exceptions/second:
+Rate: 4898143.31/4838010.45 rows/second, 4898.14/4838.01 requests/second, 0.00 exceptions/second:
+------ async 32
+Rate: 5314050.76/5314050.87 rows/second, 5314.05/5314.05 requests/second, 0.00 exceptions/second:
+Rate: 5322328.92/5318193.33 rows/second, 5322.33/5318.19 requests/second, 0.00 exceptions/second:
+Rate: 5208995.13/5281820.80 rows/second, 5209.00/5281.82 requests/second, 0.00 exceptions/second:
+Rate: 5260332.35/5276450.78 rows/second, 5260.33/5276.45 requests/second, 0.00 exceptions/second:
+Rate: 5265342.94/5274229.19 rows/second, 5265.34/5274.23 requests/second, 0.00 exceptions/second:
+Rate: 5227965.91/5266524.63 rows/second, 5227.97/5266.52 requests/second, 0.00 exceptions/second:
+------ async 64
+Rate: 5275756.41/5275756.51 rows/second, 5275.76/5275.76 requests/second, 0.00 exceptions/second:
+Rate: 5254237.04/5264978.25 rows/second, 5254.24/5264.98 requests/second, 0.00 exceptions/second:
+Rate: 5357384.97/5295742.79 rows/second, 5357.38/5295.74 requests/second, 0.00 exceptions/second:
+Rate: 5291142.33/5294593.62 rows/second, 5291.14/5294.59 requests/second, 0.00 exceptions/second:
+Rate: 5348689.02/5305403.08 rows/second, 5348.69/5305.40 requests/second, 0.00 exceptions/second:
+Rate: 5261313.40/5298057.86 rows/second, 5261.31/5298.06 requests/second, 0.00 exceptions/second:
+------ async 128
+Rate: 5089785.46/5089785.56 rows/second, 5089.79/5089.79 requests/second, 0.00 exceptions/second:
+Rate: 5187867.62/5138927.97 rows/second, 5187.87/5138.93 requests/second, 0.00 exceptions/second:
+Rate: 5187692.29/5155154.79 rows/second, 5187.69/5155.15 requests/second, 0.00 exceptions/second:
+Rate: 5152585.03/5154512.91 rows/second, 5152.59/5154.51 requests/second, 0.00 exceptions/second:
+Rate: 5170203.32/5157648.71 rows/second, 5170.20/5157.65 requests/second, 0.00 exceptions/second:
+Rate: 5185995.89/5162370.49 rows/second, 5186.00/5162.37 requests/second, 0.00 exceptions/second:
+------ async 256
+Rate: 5420001.30/5420001.41 rows/second, 5420.00/5420.00 requests/second, 0.00 exceptions/second:
+Rate: 5737877.90/5579439.72 rows/second, 5737.88/5579.44 requests/second, 0.00 exceptions/second:
+Rate: 5706263.65/5621620.84 rows/second, 5706.26/5621.62 requests/second, 0.00 exceptions/second:
+Rate: 5301690.25/5541745.42 rows/second, 5301.69/5541.75 requests/second, 0.00 exceptions/second:
+Rate: 5368309.95/5507045.12 rows/second, 5368.31/5507.05 requests/second, 0.00 exceptions/second:
+Rate: 5424230.28/5493260.70 rows/second, 5424.23/5493.26 requests/second, 0.00 exceptions/second:
+------ async 512
+Rate: 5459407.62/5459407.73 rows/second, 5459.41/5459.41 requests/second, 0.00 exceptions/second:
+Rate: 5571818.23/5515834.54 rows/second, 5571.82/5515.83 requests/second, 0.00 exceptions/second:
+Rate: 5550300.08/5527271.27 rows/second, 5550.30/5527.27 requests/second, 0.00 exceptions/second:
+Rate: 5586450.53/5541988.20 rows/second, 5586.45/5541.99 requests/second, 0.00 exceptions/second:
+Rate: 5695722.74/5572642.20 rows/second, 5695.72/5572.64 requests/second, 0.00 exceptions/second:
+Rate: 5453189.97/5552814.33 rows/second, 5453.19/5552.81 requests/second, 0.00 exceptions/second:
+------ async 1024
+Rate: 5188228.26/5188228.37 rows/second, 5188.23/5188.23 requests/second, 0.00 exceptions/second:
+Rate: 5738126.89/5463855.67 rows/second, 5738.13/5463.86 requests/second, 0.00 exceptions/second:
+Rate: 5770543.19/5565939.08 rows/second, 5770.54/5565.94 requests/second, 0.00 exceptions/second:
+Rate: 5626054.30/5580917.65 rows/second, 5626.05/5580.92 requests/second, 0.00 exceptions/second:
+Rate: 5317318.45/5528323.36 rows/second, 5317.32/5528.32 requests/second, 0.00 exceptions/second:
+Rate: 5607561.54/5541528.18 rows/second, 5607.56/5541.53 requests/second, 0.00 exceptions/second:

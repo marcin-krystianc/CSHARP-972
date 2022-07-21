@@ -28,13 +28,11 @@ public class Main {
             final int HELPER_THREADS = Integer.parseInt(System.getProperty("test.helper.threads", "10"));
             final int PERMITS = Integer.parseInt(System.getProperty("test.permits", "400"));
             Executor executor = Executors.newFixedThreadPool(HELPER_THREADS);
-            Semaphore semaphore = new Semaphore(PERMITS);
 
             // producer that submits the queries.
             for (int i = 0; i < THREADS; i++) {
                 Thread producer = new Thread(() -> {
                     while (isRunning) {
-                        semaphore.acquireUninterruptibly();
                         session.executeAsync(ps.bind(partition))
                                 .thenComposeAsync(rs -> countRows(rs, 0, executor), executor)
                                 .whenCompleteAsync((count, error) -> {
@@ -44,7 +42,6 @@ public class Main {
                                     } else {
                                         counter.addAndGet(count);
                                     }
-                                    semaphore.release();
                                 }, executor);
                     }
                 });
@@ -73,7 +70,6 @@ public class Main {
             long start = System.currentTimeMillis();
             Thread.sleep(60000);
             isRunning = false;
-            semaphore.acquireUninterruptibly(PERMITS);
             logger.join();
 
             long elapsed = System.currentTimeMillis() - start;

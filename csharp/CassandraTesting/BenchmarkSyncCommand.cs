@@ -50,11 +50,6 @@ public sealed class BenchmarkSyncCommand : Command<BenchmarkSettings>
             threads.Add(thread);
         }
 
-        for (var i = 0; i < settings.TaskCount; i++)
-        {
-            threads[i].Start();
-        }
-        
         var stopWatch = Stopwatch.StartNew();
         if (settings.Duration.HasValue)
         {
@@ -74,17 +69,22 @@ public sealed class BenchmarkSyncCommand : Command<BenchmarkSettings>
                     if (rowCounter > settings.Records.Value ||
                         requestCounter > settings.Records.Value)
                     {
+                        Console.WriteLine("Read rows {0}, requests {1}", rowCounter, requestCounter);
                         break;
                     }
-
-                    Console.WriteLine("Read rows {0}, requests {1}", rowCounter, requestCounter);
-                    cts.Cancel();
                 }
+
+                cts.Cancel();
             });
             
             threads.Add(thread);
         }
-
+        
+        foreach (var thread in threads)
+        {
+            thread.Start();
+        }
+        
         long lastRowCounter = 0;
         long lastRequestCounter = 0;
         var smallSw = stopWatch;

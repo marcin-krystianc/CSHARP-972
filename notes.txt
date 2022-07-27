@@ -18,4 +18,4 @@ docker exec -it cassandra /bin/bash
 docker run --rm -it --network cassandra --name javasdk --entrypoint=/bin/bash maven:3.8.6-ibm-semeru-17-focal
 
 echo "------ 1" && dotnet run --project CassandraTesting.csproj --configuration Release -- benchmark-sync  --hostname=cassandra --port=9042 --no-ssl --partition=3 --duration=30 --tasks=1
-echo "------ java 1" && mvn exec:java -Dexec.mainClass="org.example.Main"     -Dtest.threads=1    -Dtest.permits=1    -Dtest.helper.threads=3 -Dtest.partition=3
+echo "------ java 1" && mvn package && mvn exec:java -Dexec.mainClass="org.example.Main" -Dtest.threads=1 -Dtest.partition=1

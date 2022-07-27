@@ -24,33 +24,22 @@ public class Main {
 
             AtomicLong counter = new AtomicLong(0);
             final int partition = Integer.parseInt(System.getProperty("test.partition", "0"));
-            int THREADS = Integer.parseInt(System.getProperty("test.threads", "400"));
-            final int HELPER_THREADS = Integer.parseInt(System.getProperty("test.helper.threads", "10"));
-            Executor executor = Executors.newFixedThreadPool(HELPER_THREADS);
+            int THREADS = Integer.parseInt(System.getProperty("test.threads", "8"));
             BoundStatement bs = ps.bind(partition);
 
             // producer that submits the queries.
             for (int i = 0; i < THREADS; i++) {
-                Thread producer = new Thread(() -> {
+                Thread t = new Thread(() -> {
                     while (isRunning) {
-                        try {
-                            session.executeAsync(bs)
-                                    .thenComposeAsync(rs -> countRows(rs, 0, executor), executor)
-                                    .whenCompleteAsync((count, error) -> {
-                                        if (error != null) {
-                                            System.err.println(error.getMessage());
-                                            isRunning = false;
-                                        } else {
-                                            counter.addAndGet(count);
-                                        }
-                                    }, executor)
-                            .toCompletableFuture().get();
+                        ResultSet rs = session.execute(bs);
+                        long c = 0;
+                        for (Row row : rs) {
+                            c++;
                         }
-                        catch (ExecutionException e){}
-                        catch (InterruptedException e){}
+                        counter.addAndGet(c);
                     }
                 });
-                producer.start();
+                t.start();
             }
 
             Thread logger = new Thread(() -> {
@@ -81,19 +70,6 @@ public class Main {
             System.out.println("Rate: " + rate + " rows/second");
 
             System.exit(0);
-        }
-    }
-
-    private static CompletionStage<Long> countRows(final AsyncResultSet resultSet, long previousPagesCount, final Executor executor) {
-        long count = previousPagesCount;
-        for (Row row : resultSet.currentPage()) {
-            count += 1;
-        }
-        if (resultSet.hasMorePages()) {
-            final long COUNT = count;
-            return resultSet.fetchNextPage().thenComposeAsync(rs -> countRows(rs, COUNT, executor), executor);
-        } else {
-            return CompletableFuture.completedFuture(count);
         }
     }
 }

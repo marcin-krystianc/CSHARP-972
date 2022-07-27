@@ -1,4 +1,4 @@
-tnet run --project CassandraTesting.csproj --configuration Release -- benchmark  --hostname=cassandra --port=9042 --no-ssl --partition=0 --tasks=1
+dotnet run --project CassandraTesting.csproj --configuration Release -- benchmark  --hostname=cassandra --port=9042 --no-ssl --partition=0 --tasks=1
 dotnet run --project CassandraTesting.csproj --configuration Release -- populate --partitions=7 --hostname=cassandra --port=9042 --no-ssl
 
 mvn package && mvn exec:java -Dexec.mainClass="org.example.Main"  -Dtest.threads=1024 -Dtest.permits=1024 -Dtest.helper.threads=1 -Dtest.partition=0

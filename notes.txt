@@ -1,0 +1,21 @@
+tnet run --project CassandraTesting.csproj --configuration Release -- benchmark  --hostname=cassandra --port=9042 --no-ssl --partition=0 --tasks=1
+dotnet run --project CassandraTesting.csproj --configuration Release -- populate --partitions=7 --hostname=cassandra --port=9042 --no-ssl
+
+mvn package && mvn exec:java -Dexec.mainClass="org.example.Main"  -Dtest.threads=1024 -Dtest.permits=1024 -Dtest.helper.threads=1 -Dtest.partition=0
+
+docker network create cassandra
+sudo docker run --rm -d --name cassandra --hostname cassandra --network cassandra cassandra
+sudo docker run --rm --network cassandra -v "D:\workspace\CSHARP-972\data.cql:/scripts/data.cql" -e CQLSH_HOST=cassandra -e CQLSH_PORT=9042 -e CQLVERSION=3.4.5 nuvo/docker-cqlsh  
+sudo docker run --rm --network cassandra -v "/home/ubuntu/CSHARP-972/data.cql:/scripts/data.cql" -e CQLSH_HOST=cassandra -e CQLSH_PORT=9042 -e CQLVERSION=3.4.5 nuvo/docker-cqlsh
+sudo docker run --rm -it --network cassandra --name dotnetsdk mcr.microsoft.com/dotnet/sdk:6.0
+git clone https://github.com/marcin-krystianc/CSHARP-972.git
+cd CSHARP-972/csharp/CassandraTesting
+cd CSHARP-972/java/CassandraTesting
+
+sudo docker exec -it dotnetsdk /bin/bash
+docker exec -it cassandra /bin/bash
+
+docker run --rm -it --network cassandra --name javasdk --entrypoint=/bin/bash maven:3.8.6-ibm-semeru-17-focal
+
+echo "------ 1" && dotnet run --project CassandraTesting.csproj --configuration Release -- benchmark-sync  --hostname=cassandra --port=9042 --no-ssl --partition=3 --duration=30 --tasks=1
+echo "------ java 1" && mvn exec:java -Dexec.mainClass="org.example.Main"     -Dtest.threads=1    -Dtest.permits=1    -Dtest.helper.threads=3 -Dtest.partition=3

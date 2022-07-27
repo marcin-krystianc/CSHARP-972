@@ -25,10 +25,8 @@ public class Main {
             AtomicLong counter = new AtomicLong(0);
             final int partition = Integer.parseInt(System.getProperty("test.partition", "0"));
             int THREADS = Integer.parseInt(System.getProperty("test.threads", "400"));
-            final int PERMITS = Integer.parseInt(System.getProperty("test.permits", "400"));
             final int HELPER_THREADS = Integer.parseInt(System.getProperty("test.helper.threads", "10"));
             Executor executor = Executors.newFixedThreadPool(HELPER_THREADS);
-            Semaphore semaphore = new Semaphore(PERMITS);
             BoundStatement bs = ps.bind(partition);
             THREADS = 1;
 
@@ -36,18 +34,21 @@ public class Main {
             for (int i = 0; i < THREADS; i++) {
                 Thread producer = new Thread(() -> {
                     while (isRunning) {
-                        semaphore.acquireUninterruptibly();
-                        session.executeAsync(bs)
-                                .thenComposeAsync(rs -> countRows(rs, 0, executor), executor)
-                                .whenCompleteAsync((count, error) -> {
-                                    if (error != null) {
-                                        System.err.println(error.getMessage());
-                                        isRunning = false;
-                                    } else {
-                                        counter.addAndGet(count);
-                                    }
-                                    semaphore.release();
-                                }, executor);
+                        try {
+                            session.executeAsync(bs)
+                                    .thenComposeAsync(rs -> countRows(rs, 0, executor), executor)
+                                    .whenCompleteAsync((count, error) -> {
+                                        if (error != null) {
+                                            System.err.println(error.getMessage());
+                                            isRunning = false;
+                                        } else {
+                                            counter.addAndGet(count);
+                                        }
+                                    }, executor)
+                            .toCompletableFuture().get();
+                        }
+                        catch (ExecutionException e){}
+                        catch (InterruptedException e){}
                     }
                 });
                 producer.start();
@@ -74,7 +75,6 @@ public class Main {
             long start = System.currentTimeMillis();
             Thread.sleep(60000);
             isRunning = false;
-            semaphore.acquireUninterruptibly(PERMITS);
             logger.join();
 
             long elapsed = System.currentTimeMillis() - start;

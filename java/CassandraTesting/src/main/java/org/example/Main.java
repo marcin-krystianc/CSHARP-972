@@ -87,9 +87,6 @@ public class Main {
     private static CompletionStage<Long> countRows(final AsyncResultSet resultSet, long previousPagesCount, final Executor executor) {
         long count = previousPagesCount;
         for (Row row : resultSet.currentPage()) {
-            for (int i = 0, n = row.size(); i < n; i++) {
-                row.getObject(i);
-            }
             count += 1;
         }
         if (resultSet.hasMorePages()) {

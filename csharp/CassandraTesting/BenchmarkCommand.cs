@@ -78,7 +78,6 @@ public sealed class BenchmarkCommand : AsyncCommand<BenchmarkSettings>
             _lastException = null;
             smallSw = Stopwatch.StartNew();
             Console.WriteLine("Rate: {0:f2}/{1:f2} rows/second, {2:f2}/{3:f2} requests/second, {4:f2} exceptions/second: {5}" , smallRowRate, rowRate, smallRequestRate, requestRate, exceptionsRate, lastException?.Message ?? "");
-            Console.WriteLine("Hey there");
             var state = session.GetState();
             foreach (var host in state.GetConnectedHosts())
             {

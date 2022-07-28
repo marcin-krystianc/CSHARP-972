@@ -8,9 +8,8 @@ sudo docker run --rm -d --name cassandra --hostname cassandra --network cassandr
 sudo docker run --rm --network cassandra -v "D:\workspace\CSHARP-972\data.cql:/scripts/data.cql" -e CQLSH_HOST=cassandra -e CQLSH_PORT=9042 -e CQLVERSION=3.4.5 nuvo/docker-cqlsh  
 sudo docker run --rm --network cassandra -v "/home/ubuntu/CSHARP-972/data.cql:/scripts/data.cql" -e CQLSH_HOST=cassandra -e CQLSH_PORT=9042 -e CQLVERSION=3.4.5 nuvo/docker-cqlsh
 sudo docker run --rm -it --network cassandra --name dotnetsdk mcr.microsoft.com/dotnet/sdk:6.0
-git clone https://github.com/marcin-krystianc/CSHARP-972.git
-cd CSHARP-972/csharp/CassandraTesting
-cd CSHARP-972/java/CassandraTesting
+git clone https://github.com/marcin-krystianc/CSHARP-972.git && cd CSHARP-972/csharp/CassandraTesting
+git clone https://github.com/marcin-krystianc/CSHARP-972.git && cd CSHARP-972/java/CassandraTesting
 
 sudo docker exec -it dotnetsdk /bin/bash
 docker exec -it cassandra /bin/bash

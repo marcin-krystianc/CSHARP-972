@@ -35,7 +35,11 @@ public sealed class BenchmarkSyncCommand : Command<BenchmarkSettings>
                     try
                     {
                         var rs = session.Execute(statement);
-                        var rowCount = rs.Count();
+                        var rowCount = 0;
+                        foreach (var _ in rs)
+                        {
+                            rowCount++;
+                        }
                         Interlocked.Add(ref _rowCounter, rowCount);
                         Interlocked.Increment(ref _requestCounter);
                     }

@@ -16,15 +16,10 @@ public static class CassandraUtils
         var amazoncert = new X509Certificate2(crtFileName);
         certCollection.Add(amazoncert);
 
-        var poolingOptions = PoolingOptions.Create();
+        var poolingOptions = new PoolingOptions();
         poolingOptions.SetWarmup(true);
-        poolingOptions.SetMaxConnectionsPerHost(HostDistance.Local, 4);
-        poolingOptions.SetMaxConnectionsPerHost(HostDistance.Remote, 4);
-        poolingOptions.SetMaxConnectionsPerHost(HostDistance.Ignored, 4);
-        
-        poolingOptions.SetCoreConnectionsPerHost(HostDistance.Local, 4);
-        poolingOptions.SetCoreConnectionsPerHost(HostDistance.Remote, 4);
-        poolingOptions.SetCoreConnectionsPerHost(HostDistance.Ignored, 4);
+        poolingOptions.SetMaxConnectionsPerHost(HostDistance.Local, 32);
+        poolingOptions.SetMaxConnectionsPerHost(HostDistance.Remote, 32);
 
         poolingOptions.SetMaxRequestsPerConnection(1024);
         

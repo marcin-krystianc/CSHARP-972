@@ -28,7 +28,6 @@ public static class CassandraUtils
         var clusterBuilder = Cluster.Builder()
             .AddContactPoint(settings.Hostname)
             .WithPort(settings.Port)
-            .WithPoolingOptions(poolingOptions)
             .WithSocketOptions(new SocketOptions().SetTcpNoDelay(true).SetReadTimeoutMillis(0));
 
         if (!settings.NoSSL)

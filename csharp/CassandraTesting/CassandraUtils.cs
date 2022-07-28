@@ -21,7 +21,7 @@ public static class CassandraUtils
         poolingOptions.SetMaxConnectionsPerHost(HostDistance.Local, 32);
         poolingOptions.SetMaxConnectionsPerHost(HostDistance.Remote, 32);
 
-        poolingOptions.SetMaxRequestsPerConnection(1024);
+        poolingOptions.SetMaxRequestsPerConnection(128);
         
         var clusterBuilder = Cluster.Builder()
             .AddContactPoint(settings.Hostname)

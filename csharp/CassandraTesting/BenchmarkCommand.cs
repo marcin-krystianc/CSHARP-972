@@ -77,7 +77,14 @@ public sealed class BenchmarkCommand : AsyncCommand<BenchmarkSettings>
             var lastException = _lastException;
             _lastException = null;
             smallSw = Stopwatch.StartNew();
-            Console.WriteLine("Rate: {0:f2}/{1:f2} rows/second, {2:f2}/{3:f2} requests/second, {4:f2} exceptions/second: {5}", smallRowRate, rowRate, smallRequestRate, requestRate, exceptionsRate, lastException?.Message ?? "");
+            Console.WriteLine("Rate: {0:f2}/{1:f2} rows/second, {2:f2}/{3:f2} requests/second, {4:f2} exceptions/second: {5}" , smallRowRate, rowRate, smallRequestRate, requestRate, exceptionsRate, lastException?.Message ?? "");
+            var state = session.GetState();
+            foreach (var host in state.GetConnectedHosts())
+            {
+                Console.WriteLine($"Host '{host.Address}': " +
+                                  $"open connections = {state.GetOpenConnections(host)}; " +
+                                  $"in flight queries = {state.GetInFlightQueries(host)}");
+            }
         }
 
         await Task.WhenAll(tasks);

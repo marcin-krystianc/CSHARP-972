@@ -20,6 +20,10 @@ public static class CassandraUtils
         poolingOptions.SetWarmup(true);
         poolingOptions.SetMaxConnectionsPerHost(HostDistance.Local, 128);
         poolingOptions.SetMaxConnectionsPerHost(HostDistance.Remote, 128);
+        poolingOptions.SetCoreConnectionsPerHost(HostDistance.Local, 128);
+        poolingOptions.SetCoreConnectionsPerHost(HostDistance.Remote, 128);
+        poolingOptions.SetMaxSimultaneousRequestsPerConnectionTreshold(HostDistance.Local, 2);
+        poolingOptions.SetMaxSimultaneousRequestsPerConnectionTreshold(HostDistance.Remote, 2);
         poolingOptions.SetMinSimultaneousRequestsPerConnectionTreshold(HostDistance.Remote, 1);
         poolingOptions.SetMinSimultaneousRequestsPerConnectionTreshold(HostDistance.Local, 1);
 
@@ -28,6 +32,7 @@ public static class CassandraUtils
         var clusterBuilder = Cluster.Builder()
             .AddContactPoint(settings.Hostname)
             .WithPort(settings.Port)
+            .WithPoolingOptions(poolingOptions)
             .WithSocketOptions(new SocketOptions().SetTcpNoDelay(true).SetReadTimeoutMillis(0));
 
         if (!settings.NoSSL)

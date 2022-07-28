@@ -91,22 +91,11 @@ public sealed class BenchmarkCommand : AsyncCommand<BenchmarkSettings>
             try
             {
                 var rs = await session.ExecuteAsync(statement);
-                
                 var rowCount = 0;
-                while (!rs.IsFullyFetched)
+                foreach (var _ in rs)
                 {
-                    var available = rs.GetAvailableWithoutFetching();
-                    using var enumerator = rs.GetEnumerator();
-                    for (var i = 0; i < available; i++)
-                    {
-                        enumerator.MoveNext();
-                        var _ = enumerator.Current;
-                        rowCount++;
-                    }
-
-                    await rs.FetchMoreResultsAsync();
+                    rowCount++;
                 }
-                
                 Interlocked.Add(ref _rowCounter, rowCount);
                 Interlocked.Increment(ref _requestCounter);
             }

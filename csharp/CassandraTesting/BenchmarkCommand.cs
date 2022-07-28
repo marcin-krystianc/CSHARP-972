@@ -92,11 +92,9 @@ public sealed class BenchmarkCommand : AsyncCommand<BenchmarkSettings>
             {
                 var rs = await session.ExecuteAsync(statement);
                 var rowCount = 0;
-                foreach (var r in rs)
+                foreach (var _ in rs)
                 {
-                    var payload = r.GetValue<string>(2);
-                    if (!string.IsNullOrWhiteSpace(payload))
-                        rowCount++;
+                    rowCount++;
                 }
                 Interlocked.Add(ref _rowCounter, rowCount);
                 Interlocked.Increment(ref _requestCounter);

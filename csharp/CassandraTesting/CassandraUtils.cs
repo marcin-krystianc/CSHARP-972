@@ -20,14 +20,11 @@ public static class CassandraUtils
         poolingOptions.SetWarmup(true);
         poolingOptions.SetMaxConnectionsPerHost(HostDistance.Local, 128);
         poolingOptions.SetMaxConnectionsPerHost(HostDistance.Remote, 128);
-        poolingOptions.SetCoreConnectionsPerHost(HostDistance.Local, 64);
-        poolingOptions.SetCoreConnectionsPerHost(HostDistance.Remote, 32);
-        poolingOptions.SetMaxSimultaneousRequestsPerConnectionTreshold(HostDistance.Local, 2);
-        poolingOptions.SetMaxSimultaneousRequestsPerConnectionTreshold(HostDistance.Remote, 2);
+        poolingOptions.SetCoreConnectionsPerHost(HostDistance.Local, 128);
+        poolingOptions.SetCoreConnectionsPerHost(HostDistance.Remote, 128);
         poolingOptions.SetMinSimultaneousRequestsPerConnectionTreshold(HostDistance.Remote, 1);
         poolingOptions.SetMinSimultaneousRequestsPerConnectionTreshold(HostDistance.Local, 1);
-
-        poolingOptions.SetMaxRequestsPerConnection(128);
+        poolingOptions.SetMaxRequestsPerConnection(16);
         
         var clusterBuilder = Cluster.Builder()
             .AddContactPoint(settings.Hostname)

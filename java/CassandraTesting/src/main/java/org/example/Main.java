@@ -4,6 +4,7 @@ import com.datastax.oss.driver.api.core.CqlSession;
 import com.datastax.oss.driver.api.core.config.DriverConfigLoader;
 import com.datastax.oss.driver.api.core.cql.*;
 
+import java.time.Duration;
 import java.net.InetSocketAddress;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.*;
@@ -28,7 +29,7 @@ public class Main {
             final int HELPER_THREADS = Integer.parseInt(System.getProperty("test.helper.threads", "10"));
             Executor executor = Executors.newFixedThreadPool(HELPER_THREADS);
             BoundStatement bs = ps.bind(partition);
-
+            bs.setTimeout(Duration.ofSeconds(120));
             // producer that submits the queries.
             for (int i = 0; i < THREADS; i++) {
                 Thread producer = new Thread(() -> {

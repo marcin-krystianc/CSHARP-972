@@ -94,6 +94,9 @@ public sealed class BenchmarkCommand : AsyncCommand<BenchmarkSettings>
 
     async Task Worker(ISession session, Statement statement, CancellationToken ct)
     {
+        // yield immediately in case ExecuteAsync blocks
+        await Task.Yield();
+
         while (!ct.IsCancellationRequested)
         {
             try

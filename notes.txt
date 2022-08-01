@@ -1,7 +1,7 @@
 dotnet run --project CassandraTesting.csproj --configuration Release -- benchmark  --hostname=cassandra --port=9042 --no-ssl --partition=0 --tasks=1
 dotnet run --project CassandraTesting.csproj --configuration Release -- populate --partitions=7 --hostname=cassandra --port=9042 --no-ssl
 
-mvn package && mvn exec:java -Dexec.mainClass="org.example.Main"  -Dtest.threads=1 -Dtest.partition=3
+mvn package && mvn exec:java -Dexec.mainClass="org.example.Main"  -Dtest.threads=1 -Dtest.partition=3 -Ddatastax-java-driver.basic.request.timeout="15 seconds"
 
 docker network create cassandra
 sudo docker run --rm -d --name cassandra --hostname cassandra --network cassandra cassandra

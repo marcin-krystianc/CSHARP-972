@@ -46,7 +46,7 @@ public static class CassandraUtils
         }
         
         var cluster = clusterBuilder.Build();
-        return await cluster.ConnectAsync(settings.Keyspace);
+        return await cluster.ConnectAsync();
     }
     
     public static ISession Connect(CassandraSettings settings)

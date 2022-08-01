@@ -12,6 +12,7 @@ git clone https://github.com/marcin-krystianc/CSHARP-972.git && cd CSHARP-972/cs
 git clone https://github.com/marcin-krystianc/CSHARP-972.git && cd CSHARP-972/java/CassandraTesting
 
 sudo docker exec -it dotnetsdk /bin/bash
+sudo docker exec -it javasdk /bin/bash
 docker exec -it cassandra /bin/bash
 
 docker run --rm -it --network cassandra --name javasdk --entrypoint=/bin/bash maven:3.8.6-ibm-semeru-17-focal

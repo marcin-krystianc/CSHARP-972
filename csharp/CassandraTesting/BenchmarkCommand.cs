@@ -18,6 +18,7 @@ public sealed class BenchmarkCommand : AsyncCommand<BenchmarkSettings>
     public override async Task<int> ExecuteAsync(CommandContext context, BenchmarkSettings settings)
     {
         var session = await CassandraUtils.ConnectAsync(settings);
+        session.ChangeKeyspace($"{settings.Keyspace}");
         var cts = new CancellationTokenSource();
 
         var statement = new SimpleStatement($"SELECT * FROM my_table where partition_id = {settings.PartitionNumber}");

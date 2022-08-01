@@ -19,6 +19,7 @@ public sealed class BenchmarkSyncCommand : Command<BenchmarkSettings>
     public override int Execute(CommandContext context, BenchmarkSettings settings)
     {
         var session = CassandraUtils.Connect(settings);
+        session.ChangeKeyspace($"{settings.Keyspace}");
         var cts = new CancellationTokenSource();
 
         var statement = new SimpleStatement($"SELECT * FROM my_table where partition_id = {settings.PartitionNumber}");

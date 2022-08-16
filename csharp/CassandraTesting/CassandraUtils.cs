@@ -28,6 +28,7 @@ public static class CassandraUtils
             .AddContactPoint(settings.Hostname)
             .WithPort(settings.Port)
             .WithPoolingOptions(poolingOptions)
+            // TODO .WithCompression(CompressionType.LZ4)
             .WithSocketOptions(new SocketOptions().SetTcpNoDelay(true).SetReadTimeoutMillis(0));
 
         if (!settings.NoSSL)

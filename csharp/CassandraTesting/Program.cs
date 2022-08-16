@@ -1,8 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.Security.Cryptography.X509Certificates;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Cassandra;
 using Spectre.Console.Cli;
 

@@ -101,12 +101,28 @@ public sealed class BenchmarkCommand : AsyncCommand<BenchmarkSettings>
         {
             try
             {
-                var rs = await session.ExecuteAsync(statement);
                 var rowCount = 0;
-                foreach (var _ in rs)
+                var rs = await session.ExecuteAsync(statement);
+                using var enumerator = rs.GetEnumerator();
+                for (;;)
                 {
-                    rowCount++;
+                    var rowsNumber = rs.GetAvailableWithoutFetching();
+                    if (rowsNumber == 0)
+                        break;
+                    
+                    for (var i = 0; i < rowsNumber; i++)
+                    {
+                        enumerator.MoveNext();
+                        var r = enumerator.Current;
+                        if (r == null)
+                            throw new Exception("null row");
+                        
+                        rowCount++;
+                    }
+
+                    await rs.FetchMoreResultsAsync();
                 }
+
                 Interlocked.Add(ref _rowCounter, rowCount);
                 Interlocked.Increment(ref _requestCounter);
             }

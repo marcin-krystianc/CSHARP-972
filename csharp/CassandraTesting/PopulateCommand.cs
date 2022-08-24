@@ -17,8 +17,8 @@ public class PopulateCommand : AsyncCommand<PopulateSettings>
                                                        " { 'class': 'SimpleStrategy', 'replication_factor': '1' }"));
 
         session.ChangeKeyspace($"{settings.Keyspace}");
-        var columns = new [] {"partition_id int", "row_id int", "payload TEXT"};
-        var extraColumns = Enumerable.Range(0, 80)
+        var columns = new [] {"partition_id int", "row_id int", "payload blob"};
+        var extraColumns = Enumerable.Range(0, 1)
             .Select(x => $"double_{x} double")
             .ToArray();
 
@@ -48,12 +48,16 @@ public class PopulateCommand : AsyncCommand<PopulateSettings>
 
     IEnumerable<Statement> EnumerateStatements(PreparedStatement ps, PopulateSettings settings)
     {
+        var rnd = new Random(42);
+        var payload = new byte[80 * 8];
+        rnd.NextBytes(payload);
+
         for (var partition = 0; partition < settings.NumberOfPartitions; partition++)
         {
             int numberOfRows = Convert.ToInt32(Math.Pow(10, partition));
             for (var i = 0; i < numberOfRows; i++)
             {
-                yield  return ps.Bind(partition, i, $"test_{partition}_{i}");
+                yield  return ps.Bind(partition, i, payload);
             }
         }
     }

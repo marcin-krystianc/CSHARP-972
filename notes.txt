@@ -19,10 +19,10 @@ sudo docker run --rm -it --network cassandra --name javasdk --entrypoint=/bin/ba
 echo "------ 1" && dotnet run --project CassandraTesting.csproj --configuration Release -- benchmark-sync  --hostname=cassandra --port=9042 --no-ssl --partition=3 --duration=30 --tasks=1
 echo "------ java 1" && mvn exec:java -Dexec.mainClass="org.example.Main"     -Dtest.threads=1    -Dtest.permits=1    -Dtest.helper.threads=3 -Dtest.partition=3
 
-docker run --rm -d --name cassandra --hostname cassandra -p 9042:9042 --cpus=3 cassandra
+docker run --rm -d --name cassandra --hostname cassandra -p 9042:9042 cassandra
 
 sudo docker run --rm -d --name cassandra --hostname cassandra --network host cassandra
-sudo docker run --rm -it --net=host --name dotnetsdk --cpus=3 mcr.microsoft.com/dotnet/sdk:6.0
+sudo docker run --rm -it --net=host --name dotnetsdk --cpus=3 mcr.microsoft.com/dotnet/sdk:6.0 --cpus=3
 dotnet run --project CassandraTesting.csproj --configuration Release -- populate --partitions=5 --hostname=localhost --port=9042 --no-ssl 
 COMPlus_gcServer=0 dotnet run --project CassandraTesting.csproj --configuration Release -- benchmark  --hostname=localhost --port=9042 --no-ssl --partition=4 --tasks=1 --duration=300
 COMPlus_gcServer=1 dotnet run --project CassandraTesting.csproj --configuration Release -- benchmark  --hostname=localhost --port=9042 --no-ssl --partition=4 --tasks=16 --duration=300
